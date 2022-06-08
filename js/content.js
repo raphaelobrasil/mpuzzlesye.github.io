@@ -22,10 +22,12 @@ const options = [
 
 const changePage = (newOption) => {
   options.forEach(oldOption => {
-    const option = document.querySelector(`.${oldOption}Class`)
+    const option = document.querySelector(`#${oldOption}Menu`)
     if (newOption === oldOption) {
       changeContent(newOption)
+      option.className = "optionMenuActive"
     } else {
+      option.className = "optionMenu"
     }
   })
 }
@@ -37,9 +39,10 @@ const renderMenu = () => {
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4) {
         if (this.status == 200) { 
+          const initClass = option === 'home' ? 'optionMenuActive' : 'optionMenu'
           menuOptions = [...menuOptions, {
             name: option,
-            tag: `<div class='${option}Menu' onclick={changePage('${option}')}>${option}</div>`
+            tag: `<div id='${option}Menu' class=${initClass} onclick={changePage('${option}')}>${option}</div>`
           }] 
           if (menuOptions[0] !== undefined) {
             let render = '' 
@@ -77,5 +80,5 @@ const changeContent = (page) => {
 
 const initPage = () => {
   changeContent('home')
-  renderMenu()
+  renderMenu()        
 }

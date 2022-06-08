@@ -3,22 +3,40 @@
     flex-direction: column;
     width: 350px;
     min-height: 100%;
-  
+
     background-color: #344245;
     color: #eff9fa;
-    
-  }
+}
   
-  .menu .logoMenu {
+.menu .logoMenu {
     display: flex;
     justify-content: flex-end;
     width: 100%;
     height: 54px;
-  }
+}
 
-  .menu .contentMenu {}
-  
-  .menu .logoMenu .closeMenu {
+.menu #menuOptions .optionMenu {
+    text-align: center;
+    padding: 12px;
+    cursor: pointer;
+}
+
+.menu #menuOptions .optionMenuActive {
+    background-color: #37464f;
+    color: #cccccc;
+    text-align: center;
+    border-bottom: 1px solid #cccccc;
+    padding: 12px;
+    cursor: pointer;
+}
+
+.menu #menuOptions .optionMenu:hover {
+    background-color: #37464f;
+    text-shadow: 0px 2px 3px #555757;
+    color: #cccccc;
+}
+
+.menu .logoMenu .closeMenu {
     background-color: #eff9fa;
     width: 24px;
     height: 24px;
@@ -26,8 +44,8 @@
     mask: url(./../svg/arrow.svg) no-repeat center;
     margin: 15px 12px 0px 0px;
     cursor: pointer;
-  }
-  
-  .menu .logoMenu .closeMenu:hover {
+}
+
+.menu .logoMenu .closeMenu:hover {
     background-color: #cccccc;
-  }
+}
