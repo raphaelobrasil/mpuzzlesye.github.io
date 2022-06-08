@@ -2,27 +2,34 @@
 <html lang=”pt-br”>
 <head>
   <meta charset=”UTF-8”>
-  <link rel="stylesheet" href="./globalStyle.css">
+  <link rel="stylesheet" href="./styles/globalStyle.css">
+  <link rel="stylesheet" href="./styles/menuStyle.css">
+  <link rel="stylesheet" href="./styles/contentStyle.css">
   <script src="./js/w3IncludeHtml.js"></script>
   <title>MPuzzleSyE</title>
-  <script>
-    const openMenu = () => {
-      const menu = document.querySelector('.menu')
-      menu.style.display = "flex"
-    }
-  </script>
 </head>
 <body>
     <div class="view">
-      <div class="menu">MENU</div>
+      <div class="menu">
+        <div class="logoMenu">
+          <div
+            onclick={closeMenu()}
+            class="closeMenu"
+            alt="fechar menu"
+          ></div>
+        </div>
+        <div class="contentMenu">
+          MENU
+        </div>
+      </div>
       <div class="content">
         <div class="header">
-          <button
+          <div
+            class="kebab"
             onclick={openMenu()}
-          >
-            Teste
-          </button>
-          header
+            alt="abrir menu"
+          ></div>
+          Match Puzzle System Engine V. 1.6.7
         </div>
         <div w3-include-html="./pages/home/home.html"></div>
       </div>
@@ -32,5 +39,6 @@
     includeHTML()
   </script>
   <script src="/reload/reload.js"></script>
+  <script src="./js/menu.js"></script>
 </body>
 </html>

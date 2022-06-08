@@ -1,0 +1,30 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 30px;
+  
+    background-color: #344245;
+    color: #eff9fa;
+  
+    padding: 12px;
+  }
+  
+  .header .kebab {
+    background-color: #eff9fa;
+    width: 24px;
+    height: 24px;
+    -webkit-mask: url(./../svg/kebab.svg) no-repeat center;
+    mask: url(./../svg/kebab.svg) no-repeat center;
+    cursor: pointer;
+  }
+  
+  .header .kebab:hover {
+    background-color: #cccccc;
+  }
+  
+  .content {
+    width: 100%;
+    min-height: 100%;
+  }
+  
