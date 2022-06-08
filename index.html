@@ -5,7 +5,8 @@
   <link rel="stylesheet" href="./styles/globalStyle.css">
   <link rel="stylesheet" href="./styles/menuStyle.css">
   <link rel="stylesheet" href="./styles/contentStyle.css">
-  <script src="./js/w3IncludeHtml.js"></script>
+  <link rel="stylesheet" href="./styles/rodapeStyle.css">
+  <script src="./js/content.js"></script>
   <title>MPuzzleSyE</title>
 </head>
 <body>
@@ -20,6 +21,7 @@
         </div>
         <div class="contentMenu">
           MENU
+          <div id="menuOptions"></div>
         </div>
       </div>
       <div class="content">
@@ -31,14 +33,33 @@
           ></div>
           Match Puzzle System Engine V. 1.6.7
         </div>
-        <div w3-include-html="./pages/home/home.html"></div>
+        <div id="contentPage"></div>
       </div>
     </div>
-    <div class="rodape">RODAPE</div>
-  <script>
-    includeHTML()
+    <div class="rodape">
+      <div class="rodapeTitle">Match Puzzle System Engine</div>
+      <div class="rodapeSVG">
+        <a href="https://github.com/raphaelobrasil/MPuzzleSyE" target="_blank">
+          <div
+          class="githubSVG"
+          alt="github"
+          ></div>
+        </a>
+        <a href="https://www.linkedin.com/in/raphael-brasil/" target="_blank">
+          <div
+          class="linkedinSVG"
+          alt="linkedin"
+          ></div>
+        </a>
+      </div>
+      <div class="assign">
+        <p>Raphael Brasil</p>
+        <p>2022</p>
+      </div>
+    </div>
+  <script>    
+    initPage()
   </script>
   <script src="/reload/reload.js"></script>
-  <script src="./js/menu.js"></script>
 </body>
 </html>

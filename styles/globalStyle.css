@@ -21,12 +21,6 @@ body {
   width: 100%;
   min-height: 100vh;
 }
-.rodape {
-  width: 100%;
-  height: 100px;
-  background-color: #344245;
-  border-top: 1px solid #37464f;
-}
 
 
 ::-webkit-scrollbar {
