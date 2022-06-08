@@ -1,4 +1,4 @@
-function includeHTML() {
+const includeHTML = () => {
     let z, i, elmnt, file, xhttp
     z = document.getElementsByTagName("*")
 

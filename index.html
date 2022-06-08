@@ -5,19 +5,21 @@
   <link rel="stylesheet" href="./globalStyle.css">
   <script src="./js/w3IncludeHtml.js"></script>
   <title>MPuzzleSyE</title>
-  <script>
-    const openMenu = () => {
-      const menu = document.querySelector('.menu')
-      menu.style.display = "flex"
-    }
-  </script>
 </head>
 <body>
     <div class="view">
-      <div class="menu">MENU</div>
+      <div class="menu">
+        <button
+          onclick={closeMenu()}
+        >
+          closer
+        </button>
+        MENU
+      </div>
       <div class="content">
         <div class="header">
           <button
+            class="kebab"
             onclick={openMenu()}
           >
             Teste
@@ -32,5 +34,6 @@
     includeHTML()
   </script>
   <script src="/reload/reload.js"></script>
+  <script src="./js/menu.js"></script>
 </body>
 </html>
