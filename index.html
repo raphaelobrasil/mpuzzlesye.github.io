@@ -2,12 +2,32 @@
 <html lang=”pt-br”>
 <head>
   <meta charset=”UTF-8”>
+  <link rel="stylesheet" href="/globalStyle.css">
   <script src="/js/w3IncludeHtml.js"></script>
   <title>MPuzzleSyE</title>
+  <script>
+    const openMenu = () => {
+      const menu = document.querySelector('.menu')
+      menu.style.display = "flex"
+    }
+  </script>
 </head>
 <body>
-  final boss 2
-    <div w3-include-html="./pages/home/home.html"></div>
+    <div class="view">
+      <div class="menu">MENU</div>
+      <div class="content">
+        <div class="header">
+          <button
+            onclick={openMenu()}
+          >
+            Teste
+          </button>
+          header
+        </div>
+        <div w3-include-html="./pages/home/home.html"></div>
+      </div>
+    </div>
+    <div class="rodape">RODAPE</div>
   <script>
     includeHTML()
   </script>
