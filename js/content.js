@@ -17,7 +17,7 @@ const closeMenu = () => {
 }
 
 const options = [
-  'home', 'tutorial'
+  'home', 'tutorial', 'tipagem'
 ]
 
 const changePage = (newOption) => {
@@ -31,19 +31,33 @@ const changePage = (newOption) => {
 }
 
 const renderMenu = () => {
-  options.forEach(option => {
-    const menu = document.querySelector('#menuOptions')
+  let menuOptions = []
+  for (const option of options) {
     const xhttp = new XMLHttpRequest()
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4) {
-        if (this.status == 200) { menu.innerHTML += `<div class='${option}Menu' onclick={changePage('${option}')}>${option}</div>` 
+        if (this.status == 200) { 
+          menuOptions = [...menuOptions, {
+            name: option,
+            tag: `<div class='${option}Menu' onclick={changePage('${option}')}>${option}</div>`
+          }] 
+          if (menuOptions[0] !== undefined) {
+            let render = '' 
+            for (const option of options) {
+              const extractOption = menuOptions.filter(tag => tag.name === option)[0]
+              if (extractOption !== undefined) {
+                render = render + extractOption.tag
+              }
+            }
+            document.querySelector('#menuOptions').innerHTML = render
+          }
         }
         if (this.status == 404) { console.log('Menu not found')}
       }
     }
     xhttp.open("GET", `./pages/${option}/${option}.html`, true)
     xhttp.send()
-  })
+  }
 }
 
 const changeContent = (page) => {
