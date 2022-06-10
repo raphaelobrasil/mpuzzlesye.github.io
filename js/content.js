@@ -1,70 +1,12 @@
-const openMenu = () => {
-  const menu = document.querySelector('.menu')
-  const kebab = document.querySelector('.kebab')
-  const header = document.querySelector('.header')
-  menu.style.display = 'flex'
-  header.style.justifyContent = 'flex-end'
-  kebab.style.display = 'none'
-}
-
-const closeMenu = () => {
-  const menu = document.querySelector('.menu')
-  const kebab = document.querySelector('.kebab')
-  const header = document.querySelector('.header')
-  menu.style.display = 'none'
-  header.style.justifyContent = 'space-between'
-  kebab.style.display = ''
-}
-
-const options = [
-  'home', 'tutorial', 'tipagem'
+const options = ['home', 'tutorial', 'tipagem']
+const callPageJson = [
+  {'page': 'home', 'call': (json) => renderPageTipagem(json)}, 
+  {'page': 'tutorial', 'call': (json) => renderPageTipagem(json)}, 
+  {'page':'tipagem', 'call': (json) => renderPageTipagem(json)}
 ]
 
-const changePage = (newOption) => {
-  options.forEach(oldOption => {
-    const option = document.querySelector(`#${oldOption}Menu`)
-    if (newOption === oldOption) {
-      changeContent(newOption)
-      option.className = "optionMenuActive"
-    } else {
-      option.className = "optionMenu"
-    }
-  })
-}
-
-const renderMenu = () => {
-  let menuOptions = []
-  for (const option of options) {
-    const xhttp = new XMLHttpRequest()
-    xhttp.onreadystatechange = function() {
-      if (this.readyState == 4) {
-        if (this.status == 200) { 
-          const initClass = option === 'home' ? 'optionMenuActive' : 'optionMenu'
-          menuOptions = [...menuOptions, {
-            name: option,
-            tag: `<div id='${option}Menu' class=${initClass} onclick={changePage('${option}')}>${option}</div>`
-          }] 
-          if (menuOptions[0] !== undefined) {
-            let render = '' 
-            for (const option of options) {
-              const extractOption = menuOptions.filter(tag => tag.name === option)[0]
-              if (extractOption !== undefined) {
-                render = render + extractOption.tag
-              }
-            }
-            document.querySelector('#menuOptions').innerHTML = render
-          }
-        }
-        if (this.status == 404) { console.log('Menu not found')}
-      }
-    }
-    xhttp.open("GET", `./pages/${option}/${option}.html`, true)
-    xhttp.send()
-  }
-}
-
 const changeContent = (page) => {
-  const content = document.querySelector('#contentPage')
+  const content = document.querySelector('.contentPage')
   const xhttp = new XMLHttpRequest()
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4) {
@@ -76,9 +18,25 @@ const changeContent = (page) => {
   }
   xhttp.open("GET", `./pages/${page}/${page}.html`, true)
   xhttp.send()
+  getJsonInfo(`./pages/${page}/${page}.json`, page)
+}
+
+const getJsonInfo = async (fileJson, getpage) => {
+  const json = await fetch(fileJson)
+    .then(response => response.json())
+    .catch(err => {
+    console.log('Não foi possível carregar Json, error:', err)
+    return null
+  })
+  if (json) {
+    for (const {page, call} of callPageJson) {
+      page === getpage && call(json)
+    }    
+  }
 }
 
 const initPage = () => {
   changeContent('home')
   renderMenu()        
 }
+

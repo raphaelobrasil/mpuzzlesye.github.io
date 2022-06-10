@@ -1,0 +1,610 @@
+{
+  "PuzzleTables": [
+    {
+      "title": "IBasicTable",
+      "description": [
+        {
+          "prop": "id",
+          "type": "number"
+        },
+        {
+          "prop": "type",
+          "type": "string"
+        },
+        {
+          "prop": "category",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "title": "IConfigTable",
+      "description": [
+        {
+          "prop": "row",
+          "type": "number"
+        },
+        {
+          "prop": "column",
+          "type": "number"
+        },
+        {
+          "prop": "stoneConfig",
+          "type": "IStoneDefinition&#60;TIdStone, TStone, TCategory&#62;"
+        }
+      ]
+    }
+  ],
+  "Modules": [
+    {
+      "title": "IStoneDefinition&#60;TIdStone, TStone, TCategory&#62;[]",
+      "description": [
+        {
+          "prop": "id",
+          "type": "TIdStone"
+        },
+        {
+          "prop": "type",
+          "type": "TStone"
+        },
+        {
+          "prop": "category",
+          "type": "TCategory[]"
+        }
+      ]
+    },
+    {
+      "title": "IStoneBasicConfig",
+      "description": [
+        {
+          "prop": "stones",
+          "type": "undefined | string[]"
+        },
+        {
+          "prop": "categorys",
+          "type": "undefined | string[]"
+        }
+      ]
+    }
+  ],
+  "Match3": [
+    {
+      "title": "IActiveEffects",
+      "description": [
+        {
+          "prop": "table",
+          "type": "IBasicTable[][]"
+        },
+        {
+          "prop": "activeCategorys",
+          "type": "IEffectsCategory[]"
+        },
+        {
+          "prop": "row",
+          "type": "number"
+        },
+        {
+          "prop": "column",
+          "type": "number"
+        },
+        {
+          "prop": "stone",
+          "type": "IBasicTable"
+        }
+      ]
+    },
+    {
+      "title": "IActiveEffectsInMatchs",
+      "description": [
+        {
+          "prop": "table",
+          "type": "IBasicTable[][]"
+        },
+        {
+          "prop": "activeCategorys",
+          "type": "IEffectsCategory[]"
+        },
+        {
+          "prop": "occurrences",
+          "type": "{ row: number, column: number, stone: IBasicTable }"
+        }
+      ]
+    },
+    {
+      "title": "ISequencial",
+      "description": [
+        {
+          "prop": "sequence",
+          "type": "ICrossOccurrence[]"
+        },
+        {
+          "prop": "activated",
+          "type": "dragDrop[]"
+        }
+      ]
+    },
+    {
+      "title": "ISequentialEffects",
+      "description": [
+        {
+          "prop": "sequenceInitial",
+          "type": "ISequencial"
+        },
+        {
+          "prop": "table",
+          "type": "IBasicTable[]"
+        },
+        {
+          "prop": "effects",
+          "type": "IEffectsCategory[]"
+        }
+      ]
+    },
+    {
+      "title": "IEffects",
+      "description": [
+        {
+          "prop": "table",
+          "type": "IBasicTable[]"
+        },
+        {
+          "prop": "effects",
+          "type": "IEffectsCategory[]"
+        },
+        {
+          "prop": "row",
+          "type": "number"
+        },
+        {
+          "prop": "column",
+          "type": "number"
+        },
+        {
+          "prop": "stone",
+          "type": "IBasicTable"
+        }
+      ]
+    },
+    {
+      "title": "ICategoryApplication",
+      "description": [
+        {
+          "prop": "table",
+          "type": "IBasicTable[][]"
+        },
+        {
+          "prop": "effects",
+          "type": "IEffectsCategory[]"
+        },
+        {
+          "prop": "matchs",
+          "type": "IMatchValidate"
+        },
+        {
+          "prop": "config",
+          "type": "IStoneDefinition&#60;TIdStone, TStone, TCategory&#62;"
+        },
+        {
+          "prop": "move",
+          "type": "undefined | { drag e drop: dragDrop }"
+        }
+      ]
+    },
+    {
+      "title": "IEffectsCategory",
+      "description": [
+        {
+          "prop": "effect",
+          "type": "(props: IEffects) => Promise&#60;ICrossOccurrence[]&#62;"
+        },
+        {
+          "prop": "category",
+          "type": "string"
+        },
+        {
+          "prop": "stoneIds:",
+          "type": "number[]"
+        },
+        {
+          "prop": "rule",
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "title": "dragDrop",
+      "description": [
+        {
+          "prop": "row",
+          "type": "number"
+        },
+        {
+          "prop": "column",
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "title": "ISpecialEffect",
+      "description": [
+        {
+          "prop": "occurrences",
+          "type": "ICrossOccurrence[]"
+        },
+        {
+          "prop": "category",
+          "type": "string"
+        },
+        {
+          "prop": "order",
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "title": "INewSequencial",
+      "description": [
+        {
+          "prop": "HasSequence",
+          "type": "boolean"
+        },
+        {
+          "prop": "newOccurrences",
+          "type": "ISpecialEffect[]"
+        },
+        {
+          "prop": "activated",
+          "type": "dragDrop[]"
+        }
+      ]
+    },
+    {
+      "title": "IOccurrenceRanger",
+      "description": [
+        {
+          "prop": "table",
+          "type": "IMaskBaseTable"
+        },
+        {
+          "prop": "stoneList",
+          "type": "IStoneDefinition&#60;number, string, string&#62;"
+        }
+      ]
+    },
+    {
+      "title": "IPostFilterMatchSimple",
+      "description": [
+        {
+          "prop": "table",
+          "type": "IOccurrencePeriod[][]"
+        },
+        {
+          "prop": "direction",
+          "type": "‘column’ | ‘row’"
+        }
+      ]
+    },
+    {
+      "title": "ISimpleMatch",
+      "description": [
+        {
+          "prop": "table",
+          "type": "IBasicTable[][]"
+        },
+        {
+          "prop": "config",
+          "type": "IStoneDefinition&#60;number, string, string&#62;"
+        }
+      ]
+    },
+    {
+      "title": "IGameStart",
+      "description": [
+        {
+          "prop": "rowCount",
+          "type": "number"
+        },
+        {
+          "prop": "columnCount",
+          "type": "number"
+        },
+        {
+          "prop": "config",
+          "type": "IStoneDefinition&#60;number, string, string&#62;"
+        }
+      ]
+    },
+    {
+      "title": "ISequenceHistory",
+      "description": [
+        {
+          "prop": "stone",
+          "type": "IStoneActiveSequence[]"
+        },
+        {
+          "prop": "sequence",
+          "type": "ISpecialEffect[]"
+        }
+      ]
+    },
+    {
+      "title": "IIsMatch",
+      "description": [
+        {
+          "prop": "table",
+          "type": "IBasicTable[][]"
+        },
+        {
+          "prop": "config",
+          "type": "IStoneDefinition&#60;number, string, string&#62;"
+        }
+      ]
+    },
+    {
+      "title": "IFEventsProcess",
+      "description": [
+        {
+          "prop": "table",
+          "type": "IBasicTable[][]"
+        },
+        {
+          "prop": "config",
+          "type": "IStoneDefinition&#60;number, string, string&#62;"
+        },
+        {
+          "prop": "activeCategorys",
+          "type": "IEffectsCategory[]"
+        },
+        {
+          "prop": "move",
+          "type": "undefined | { drag e drop: dragDrop }"
+        }
+      ]
+    },
+    {
+      "title": "IClearTableMatchAndEffects",
+      "description": [
+        {
+          "prop": "table",
+          "type": "IBasicTable[][]"
+        },
+        {
+          "prop": "match",
+          "type": "IMatchValidate"
+        },
+        {
+          "prop": "explodeStones",
+          "type": "ISequencial"
+        },
+        {
+          "prop": "result",
+          "type": "ISequenceHistory[]"
+        }
+      ]
+    },
+    {
+      "title": "IIsMatchResponse",
+      "description": [
+        {
+          "prop": "isMatch",
+          "type": "boolean"
+        },
+        {
+          "prop": "match",
+          "type": "IMatchValidate"
+        },
+        {
+          "prop": "effects",
+          "type": "IDetectEffectInOccurrences[]"
+        }
+      ]
+    },
+    {
+      "title": "IDetectEffectInOccurrences",
+      "description": [
+        {
+          "prop": "stone",
+          "type": "{ id: number, type: string, category: string }"
+        },
+        {
+          "prop": "row",
+          "type": "number"
+        },
+        {
+          "prop": "column",
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "title": "ICompletProcess",
+      "description": [
+        {
+          "prop": "isMatch",
+          "type": "IIsMatchResponse"
+        },
+        {
+          "prop": "initialEffect",
+          "type": "ISequencial | null"
+        },
+        {
+          "prop": "sequenceEffect",
+          "type": "ISequenceHistory[] | null"
+        },
+        {
+          "prop": "clearTable",
+          "type": "IBasicTable[][] | null"
+        },
+        {
+          "prop": "categoryAplly",
+          "type": "IBasicTable[][] | null"
+        },
+        {
+          "prop": "organizeTable",
+          "type": "IBasicTable[][] | null"
+        },
+        {
+          "prop": "newTable",
+          "type": "IBasicTable[][] | null"
+        }
+      ]
+    },
+    {
+      "title": "IMatchValidate",
+      "description": [
+        {
+          "prop": "rows",
+          "type": "undefined | IFilterMatchSimple[][]"
+        },
+        {
+          "prop": "columns",
+          "type": "undefined | IFilterMatchSimple[][]"
+        },
+        {
+          "prop": "cross",
+          "type": "undefined | IFilterMatchCross[][]"
+        }
+      ]
+    },
+    {
+      "title": "IMaskBaseTable",
+      "description": [
+        {
+          "prop": "table",
+          "type": "IBasicTable[][]"
+        },
+        {
+          "prop": "countRow",
+          "type": "number"
+        },
+        {
+          "prop": "countColumn",
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "title": "IOccurrencePeriod",
+      "description": [
+        {
+          "prop": "orderPeriod",
+          "type": "IOccurrence[]"
+        },
+        {
+          "prop": "stone",
+          "type": "string"
+        },
+        {
+          "prop": "period",
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "title": "IFilterMatchSimple",
+      "description": [
+        {
+          "prop": "orderPeriod",
+          "type": "IOccurrence[][]"
+        },
+        {
+          "prop": "stone",
+          "type": "string"
+        },
+        {
+          "prop": "period",
+          "type": "number"
+        },
+        {
+          "prop": "direction",
+          "type": "‘column’ | ‘row’"
+        },
+        {
+          "prop": "idMatch",
+          "type": "string"
+        },
+        {
+          "prop": "chains",
+          "type": "undefined | string[]"
+        }
+      ]
+    },
+    {
+      "title": "IOccurrence",
+      "description": [
+        {
+          "prop": "occurrence",
+          "type": "number"
+        },
+        {
+          "prop": "id",
+          "type": "number"
+        },
+        {
+          "prop": "type",
+          "type": "string"
+        },
+        {
+          "prop": "category",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "title": "IFilterMatchCross",
+      "description": [
+        {
+          "prop": "occurrences",
+          "type": "ICrossOccurrence[]"
+        },
+        {
+          "prop": "id",
+          "type": "number"
+        },
+        {
+          "prop": "type",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "title": "ICrossOccurrence",
+      "description": [
+        {
+          "prop": "periodRow",
+          "type": "number"
+        },
+        {
+          "prop": "periodColumn",
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "title": "IClearInitEffect",
+      "description": [
+        {
+          "prop": "table",
+          "type": "IBasicTable[][]"
+        },
+        {
+          "prop": "effect",
+          "type": "ISequencial"
+        }
+      ]
+    },
+    {
+      "title": "IClearSequentialEffects",
+      "description": [
+        {
+          "prop": "table",
+          "type": "IBasicTable[][]"
+        },
+        {
+          "prop": "effect",
+          "type": "ISequenceHistory[]"
+        }
+      ]
+    }
+  ]
+}

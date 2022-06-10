@@ -26,5 +26,81 @@
   .content {
     width: 100%;
     min-height: 100%;
+    padding-bottom: 48px;
   }
   
+  .content .contentPage h1 {
+    max-width: 50%;
+    padding-left: 24px;
+    border-bottom: 1px solid #344245;
+    color: #344245;
+  }
+  
+  .content .contentPage h3 {
+    padding: 0px 24px;
+    color: #5c5c5c;
+  }
+
+  .content .contentPage h2 {
+    max-width: 50%;
+    padding: 24px 24px 0px 24px;
+    color: #344245;
+  }
+
+  .content .contentPage .tableContent {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 48px);
+    background-color: #FFF;
+    margin-left: 24px;
+    border-radius: 3px;
+    border-top: 1px solid #344245;
+    border-left: 1px solid #344245;
+    border-right: 1px solid #344245;
+    font-size: 14px;
+  }
+
+  .content .contentPage .tableContent .cardContent {
+    display: flex;
+    max-width: 100%;
+    width: 100%;
+    border-bottom: 1px solid #344245;
+  }
+
+  .content .contentPage .titleContent {
+    display: flex;
+    align-items: center;
+    max-width: 20%;
+    min-width: 10%;
+    width: 20%;  
+    padding: 12px 24px;
+    border-right: 1px solid #344245;
+    word-break: break-word;
+  }
+
+  .content .contentPage .descriptionContent {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    row-gap: 12px;
+    max-width: 80%;
+    width: 80%;  
+    padding: 12px 24px;
+    word-break: break-word;
+  }
+
+  .content .contentPage .descriptionContent span{
+    background-color: #f1f2f2;
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: #ff8800;
+    font-style: italic;
+  }
+
+  .content .contentPage .descriptionContent span strong {
+    color: #344245;
+  }
+
+  .content .contentPage .titleContent strong {
+    color: #344245;
+  }
