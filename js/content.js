@@ -1,8 +1,10 @@
-const options = ['home', 'tutorial', 'tipagem']
+const options = ['home', 'tutorial', 'tipagem', 'functions', 'reform']
 const callPageJson = [
-  {'page': 'home', 'call': (json) => renderPageTipagem(json)}, 
-  {'page': 'tutorial', 'call': (json) => renderPageTipagem(json)}, 
-  {'page':'tipagem', 'call': (json) => renderPageTipagem(json)}
+  {'page': 'home', 'call': (json) => json}, 
+  {'page': 'tutorial', 'call': (json) => json}, 
+  {'page':'tipagem', 'call': (json) => renderPageTipagem(json)}, 
+  {'page':'functions', 'call': (json) => json},
+  {'page':'reform', 'call': (json) => json},
 ]
 
 const changeContent = (page) => {
