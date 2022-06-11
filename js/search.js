@@ -80,6 +80,7 @@ const openSearching = async (value) => {
           clearSearch()
           document.querySelector('.searchLoading').style.visibility = 'visible'
           searching(searchingInterface, searchingFunctions, value)
+          document.querySelector('.searchbtnIcon').innerHTML = `<span onclick='closeSearch()'>X</span>`
         }
         if (this.status == 404) { contentSearch.innerHTML = `Page not found.` }
       }
@@ -92,6 +93,12 @@ const openSearching = async (value) => {
     contentSearch.style.display = 'none'
     contentPage.style.display = 'unset'
   }
+}
+
+const closeSearch = () => {
+  document.querySelector('.searchInput').value = ''
+  getSearch('')
+  document.querySelector('.searchbtnIcon').innerHTML = `<div class="searchIcon"></div>`
 }
 
 const getSearch = (value) => {
