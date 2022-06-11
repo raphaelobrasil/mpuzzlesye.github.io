@@ -16,9 +16,9 @@ const options = ['home', 'tutorial', 'interface', 'functions', 'reform']
 const callPageJson = [
   {'page': 'home', 'call': (json) => null, "json": {}}, 
   {'page': 'tutorial', 'call': (json) => null, "json": {}}, 
+  {'page':'reform', 'call': (json) => null, "json": {}},
   {'page':'interface', 'call': (json) => renderPageInterface(json), "json": jsonInterface}, 
   {'page':'functions', 'call': (json) => renderPageFunctions(json), "json": jsonFunctions},
-  {'page':'reform', 'call': (json) => null, "json": {}},
 ]
 
 const changeContent = (page) => {
@@ -38,10 +38,6 @@ const changeContent = (page) => {
   }
   xhttp.open("GET", `./pages/${page}/${page}.html`, true)
   xhttp.send()
-
-  setTimeout(async () => {
-
-  }, 10)
 }
 
 

@@ -63,15 +63,6 @@
   position: relative;
 }
 
-.content .contentSearch {
-  display: none;
-  width: 100%;
-  min-height: calc(100% - 54px);
-  background-color: #f9fafa;
-  position: absolute;
-  z-index: 1;
-}
-
 .content .contentPage h1 {
   max-width: 50%;
   padding-left: 24px;
@@ -84,13 +75,13 @@
   color: #5c5c5c;
 }
 
-.content .contentPage h2 {
+.contentPage h2 {
   max-width: 50%;
   padding: 24px 24px 0px 24px;
   color: #344245;
 }
 
-.content .contentPage .tableContent {
+.tableContent {
   display: flex;
   flex-direction: column;
   width: calc(100% - 48px);
@@ -103,14 +94,14 @@
   font-size: 14px;
 }
 
-.content .contentPage .tableContent .cardContent {
+.tableContent .cardContent {
   display: flex;
   max-width: 100%;
   width: 100%;
   border-bottom: 1px solid #344245;
 }
 
-.content .contentPage .titleContent {
+.titleContent {
   display: flex;
   align-items: center;
   min-width: 20%;
@@ -121,7 +112,7 @@
   word-break: break-word;
 }
 
-.content .contentPage .titleContentFunctions {
+.titleContentFunctions {
   display: flex;
   align-items: center;
   min-width: 15%;
@@ -132,11 +123,11 @@
   word-break: break-word;
 }
 
-.content .contentPage .titleContentFunctions:not(:first-child) strong {
+.titleContentFunctions:not(:first-child) strong {
   color: #ff8800;
 }
 
-.content .contentPage .descriptionContent {
+.descriptionContent {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -147,18 +138,18 @@
   word-break: break-word;
 }
 
-.content .contentPage .inputContent {
+.inputContent {
   min-height: 100%;
   padding: 0px 12px;
   border-right: 1px solid #344245;
 }
 
-.content .contentPage .outputContent {
+.outputContent {
   padding: 0px 12px;
   border-right: 1px solid #344245;
 }
 
-.content .contentPage .descriptionContent span{
+.descriptionContent span{
   background-color: #f1f2f2;
   padding: 4px 8px;
   border-radius: 4px;
@@ -166,7 +157,7 @@
   font-style: italic;
 }
 
-.content .contentPage .descriptionContent span strong {
+.descriptionContent span strong {
   color: #344245;
 }
 
@@ -218,4 +209,27 @@
   bottom: -20px;
   font-size: 28px;
   cursor: pointer;
+}
+
+.NoFound {
+  display: none;
+  flex-direction: column;
+  padding: 200px;
+}
+
+.NoFound span {
+  font-size: 24px;
+  color:#ff8800;
+  margin: 25px calc(45% - 100px);
+  white-space: nowrap;
+}
+
+.NoFound .NoFoundSVG {
+  background-color: #ff8800;
+  width: 125px;
+  height: 125px;
+  -webkit-mask: url(./../svg/noFound.svg) no-repeat center;
+  mask: url(./../svg/noFound.svg) no-repeat center;
+
+  margin: 0 calc(50% - 100px);
 }
