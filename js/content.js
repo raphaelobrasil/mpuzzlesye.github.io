@@ -3,7 +3,7 @@ const callPageJson = [
   {'page': 'home', 'call': (json) => json}, 
   {'page': 'tutorial', 'call': (json) => json}, 
   {'page':'tipagem', 'call': (json) => renderPageTipagem(json)}, 
-  {'page':'functions', 'call': (json) => json},
+  {'page':'functions', 'call': (json) => renderPageFunctions(json)},
   {'page':'reform', 'call': (json) => json},
 ]
 
@@ -35,6 +35,40 @@ const getJsonInfo = async (fileJson, getpage) => {
       page === getpage && call(json)
     }    
   }
+}
+
+const clipBoardEffect = (value, id) => {
+  const content = document.querySelector(`#${id}`)
+  const sucessCopy = document.querySelector('#copySucess')
+  content.className = "clipboardSuccessSVG"
+  navigator.clipboard.writeText(value)
+  sucessCopy.style.display = 'block'
+}
+
+const clearNotification = (id) => {
+  const content = document.querySelector(`#${id}`)
+  const sucessCopy = document.querySelector('#copySucess')
+  content.className = "clipboardSVG"
+  sucessCopy.style.display = 'none'
+
+}
+
+const putHover = (type) => {
+  const border = document.querySelector(`.hover${type}`)
+  const svgIcon = document.querySelector(`.${type}BoardSVG`)
+  border.style.border = '3px solid #ff8800';
+  border.style.color = '#ff8800';
+  border.style.backgroundColor = '#344245';
+  svgIcon.style.backgroundColor = '#ff8800';
+
+}
+const outHover = (type) => {
+  const border = document.querySelector(`.hover${type}`)
+  const svgIcon = document.querySelector(`.${type}BoardSVG`)
+  border.style.border = '3px solid #344245';
+  border.style.color = '#344245';
+  border.style.backgroundColor = 'unset';
+  svgIcon.style.backgroundColor = '#344245';
 }
 
 const initPage = () => {

@@ -1,0 +1,174 @@
+{
+  "subtitleH3": "<strong style='color: #ff8800;'>GachaSystem</strong> agrega as funções e tipagens responsáveis pelo RNG (Random Number Generator) e Ratios (Razão, índices) presente no puzzle. <strong style='color: #ff8800;''>Modules</strong> agrega funções e tipagens responsáveis pela modulação padronizada de conteúdo. <strong style='color: #ff8800;'>Match3</strong> possui é responsável por conter todos os métodos unitários que compõe o sistema do jogo, contém métodos que ajudam no uso dos métodos unitários do sistema, além do fluxo completo e os métodos de fluxo passo-a-passo. <strong style='color: #ff8800;'>PuzzleTables</strong> agrega as funções e tipagens responsáveis pela construção da matriz lógica do puzzle.",
+  "dica": " Há interfaces de input e output faltando fatoração. Eventualmente irei corrigir esses pontos. Após resolver esses pontos, pretendo trazer mais um quadro nesta página, que será responsável por dar dicas de uso.",
+  "PuzzleTables": [
+    {
+      "functionMethod": "tablePuzzle",
+      "input": "IConfigTable",
+      "output": "IBasicTable[][]",
+      "description": "Gera uma matriz customizada com células preenchidas de conteúdo sortidos." 
+    }
+  ],
+  "Modules": [
+    {
+      "functionMethod": "stoneConfig",
+      "input": "IStoneBasicConfig",
+      "output": "IStoneDefinition&#60;TIdStone, TStone, TCategory&#62;[]",
+      "description": "Gera a lista de conteúdo que serão consumidos pela tabela do puzzle. Ele pode ter o tipo de conteúdo e a categoria customizados ou pode apenas usar sua versão padrão, para usar sua versão padrão, basta não preencher as propriedades de entrada." 
+    }
+  ],
+  "GachaSystem": [
+    {
+      "functionMethod": "uniStone",
+      "input": "null",
+      "output": "number",
+      "description": "Gera aleatoriamente um número entre 1 a 5." 
+    }
+  ],
+  "Match3": [
+    {
+      "functionMethod": "extractRow",
+      "input": "IBasicTable[][]",
+      "output": "IMaskBaseTable",
+      "description": "Extrai as linhas de uma tabela e organiza em um único array." 
+    },
+    {
+      "functionMethod": "extractColumn",
+      "input": "IBasicTable[][]",
+      "output": "IMaskBaseTable",
+      "description": "Extrai as colunas de uma tabela e organiza em um único array." 
+    },
+    {
+      "functionMethod": "category.defaultfour",
+      "input": "IEffects",
+      "output": "Promise&#60;ICrossOccurrence[]&#62;",
+      "description": "Método responsável pala ação de efeito de categoria com 4 combinações." 
+    },
+    {
+      "functionMethod": "category.defaultfive",
+      "input": "IEffects",
+      "output": "Promise&#60;ICrossOccurrence[]&#62;",
+      "description": "Método responsável pala ação de efeito de categoria com 5 combinações." 
+    },
+    {
+      "functionMethod": "category.categoryApplication",
+      "input": "ICategoryApplication",
+      "output": "Promise&#60;IBasicTable[][]&#62;",
+      "description": "Verifica se houve jogada qualificada para receber um efeito de categoria, localiza  a posição correta da mesma e aplica a categorização no correspondente." 
+    },
+    {
+      "functionMethod": "activeEffects",
+      "input": "IActiveEffects",
+      "output": "Promise&#60;ISequencial&#62;",
+      "description": "“Ativa” o efeito de categoria. É responsável por receber o comando de ativação, a tabela e a lista de categorias, então verifica qual categoria deve ser ativada." 
+    },
+    {
+      "functionMethod": "activeEffectsInMatchs",
+      "input": "IActiveEffectsInMatchs",
+      "output": "Promise&#60;ISequencial&#62;",
+      "description": "“Ativa” o efeito de categoria em match. É responsável por receber os relatórios de match, a tabela e a lista de categorias, então verifica se houve match e se há categoria para ser ativada, assim como qual categoria deve ser ativada." 
+    },
+    {
+      "functionMethod": "sequentialEffects",
+      "input": "ISequentialEffects",
+      "output": "Promise&#60;INewSequencial&#62;",
+      "description": "Recebe a ativação de um efeito de categoria, por ativação ou match, e verifica se o efeito aciona ou não outro efeito ainda inativo da tabela e se sim, ativa o mesmo e cria um relatório desta ativação." 
+    },
+    {
+      "functionMethod": "clearMatchs",
+      "input": "table: IBasicTable[][], matchs: IMatchValidate",
+      "output": "Promise&#60;IBasicTable[][]&#62;",
+      "description": "Remove do tabuleiro as pedras que deram match e substitui por um espaço vazio identificável pelo id 0, type “void”." 
+    },
+    {
+      "functionMethod": "clearInitEffect",
+      "input": "IClearInitEffect",
+      "output": "Promise&#60;IBasicTable[][]&#62;",
+      "description": "Remove do tabuleiro as pedras que foram afetadas pela ativação do efeito de categoria e substitui por um espaço vazio identificável pelo id 0, type “void”. " 
+    },
+    {
+      "functionMethod": "clearSequentialEffects",
+      "input": "IClearSequentialEffects",
+      "output": "Promise&#60;IBasicTable[][]&#62;",
+      "description": "Remove do tabuleiro as pedras que forem afetadas pelas ativações em sequência dos efeitos de categoria e substitui por um espaço vazio identificável pelo id 0, type “void”." 
+    },
+    {
+      "functionMethod": "filterCrossMatch",
+      "input": "IMatchValidate",
+      "output": "Promise&#60;IMatchValidate&#62;",
+      "description": "Verifica se há match simples vertical e/ou horizontal, se existir, analisa se ambos se cruzam ou não, caso cruze, faz o relatório de match cruzado e retira do relatório de match simples, mantendo apenas os matchs simples que não tiveram cruzamentos, do contrário, retorna o array de match cruzado vazio, mantendo os relatórios de match simples inalterados." 
+    },
+    {
+      "functionMethod": "IsCross",
+      "input": "IMatchValidate",
+      "output": "boolean",
+      "description": "Verifica se contém match cruzados." 
+    },
+    {
+      "functionMethod": "insertNewStones",
+      "input": "table: IBasicTable[][], stoneConfig: IStoneDefinition&#60;number, string, string&#62;",
+      "output": "Promise&#60;IBasicTable[][]&#62;",
+      "description": "Responsável por identificar as células vazias identificáveis pelo id 0 e type “void” no tabuleiro e preenche-las novamente com conteúdo de maneira aleatória, completando o tabuleiro." 
+    },
+    {
+      "functionMethod": "organizeStruture",
+      "input": "IBasicTable[][]",
+      "output": "Promise&#60;IBasicTable[][]&#62;",
+      "description": "Responsável por pegar a tabela após limpeza, e reorganizar os conteúdos em ordem vertical, exemplo: Numa tabela 5x7 (5 linhas e 7 colunas), na coluna 1 e linha 4 uma pedra foi limpa e substituída pelo conteúdo “void”, esse método vai fazer o conteúdo da linha 5, coluna 1 ir para a linha 4 da coluna 1, preenchendo esse void, e deixando a linha 5 da coluna 1 vazia no lugar." 
+    },
+    {
+      "functionMethod": "occurrenceRanger",
+      "input": "IOccurrenceRanger",
+      "output": "IOccurrencePeriod[][]",
+      "description": "Recebe um array separado da linha ou da coluna e verifica se durante o período houve algum conteúdo que tenha se repetido mais de 3 vezes e cria um relatório contendo apenas essas informações." 
+    },
+    {
+      "functionMethod": "filterMatchSimples",
+      "input": "IPostFilterMatchSimple",
+      "output": "Promise&#60;IFilterMatchSimple[][]&#62;",
+      "description": "Recebe o relatório feito pelo occurrenceRanger e a informação de qual direção se trata o relatório (linha ou coluna) e verifica se as repetições detectadas são elegíveis como matchs. Exemplo: Numa linha temos as colunas de 1 a 7. Se o conteúdo repetiu em sequencia da coluna 2 até a coluna 4, é constatado como elegível por ter 3 repetições em sequência. Agora se for 1 na coluna 2, 1 na coluna 4 e outro na coluna 5, não é um match válido. Se for match válido, será feito um relatório contendo somente os matchs válidos identificados." 
+    },
+    {
+      "functionMethod": "simple.simpleMatchValidator",
+      "input": "ISimpleMatch",
+      "output": "Promise&#60;IMatchValidate&#62;",
+      "description": "Recebe o tabuleiro, a configuração de conteúdo e valida se há match simples nas linhas ou colunas." 
+    },
+    {
+      "functionMethod": "cross.crossMatchValidator",
+      "input": "ISimpleMatch",
+      "output": "Promise&#60;IMatchValidate&#62;",
+      "description": "Recebe tabuleiro, configuração de conteúdo, invoca o simple.simpleMatchValidator e mediante resultado ele verifica se há match cruzado, retornando um relatório com ou sem o match cruzado." 
+    },
+    {
+      "functionMethod": "gameStart",
+      "input": "IGameStart",
+      "output": "Promise&#60;IBasicTable[][]&#62;",
+      "description": "Recebe quantas linhas e colunas o tabuleiro deve ter, a configuração do conteúdo do jogo e cria um tabuleiro novo sem match para dar início a partida, conforme as definições recebidas." 
+    },
+    {
+      "functionMethod": "fEventsProcess",
+      "input": "IFEventsProcess",
+      "output": "Promise&#60;ICompletProcess&#62;",
+      "description": "Função que realiza o fluxo completo do processo, ele recebe uma tabela que possa ter realizado um match e dá sequência a todo efeito que a mesma encadeia, gerando por fim todos os retornos de cada método e uma tabela nova, mas não verifica nesse ponto se houve match nessa nova tabela, sendo necessário passar novamente a mesma em verificação para ter certeza." 
+    },
+    {
+      "functionMethod": "isMatch",
+      "input": "IIsMatch",
+      "output": "Promise&#60;IIsMatchResponse&#62;",
+      "description": "Verifica se há match e em sequência também verifica se há efeito ativo por conta do match" 
+    },
+    {
+      "functionMethod": "sequenceHistory",
+      "input": "ISequentialEffects",
+      "output": "Promise&#60;ISequenceHistory[]&#62;",
+      "description": "Cria um relatório de sequência em ordem das ativações em cadeia dos efeitos até que não reste mais nenhum efeito inativo afetado." 
+    },
+    {
+      "functionMethod": "clearTableMatchAndEffects",
+      "input": "IClearTableMatchAndEffects",
+      "output": "Promise&#60;IBasicTable[][]&#62;",
+      "description": "Limpa a tabela dos matchs e dos efeitos caso houver." 
+    }
+  ]
+}
