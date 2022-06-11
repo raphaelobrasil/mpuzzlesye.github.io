@@ -14,12 +14,14 @@
   font-size: 22px;
   color: #eff9fa;
   text-align: center;
+  user-select: none;
 }
 
 .rodape .assign {
   font-size: 14px;
   color: #eff9fa;
   text-align: center;
+  user-select: none;
 }
 
 .rodape .rodapeSVG {
@@ -47,9 +49,9 @@
 }
 
 .rodape .rodapeSVG .githubSVG:hover {
-  background-color: #cccccc;
+  background-color: #ff8800;
 }
 
 .rodape .rodapeSVG .linkedinSVG:hover {
-  background-color: #cccccc;
+  background-color: #ff8800;
 }

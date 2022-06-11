@@ -1,13 +1,27 @@
-const options = ['home', 'tutorial', 'tipagem', 'functions', 'reform']
+const getJsonInfo = async (fileJson) => {
+  const json = await fetch(`./pages/${fileJson}/${fileJson}.json`)
+    .then(response => response.json())
+    .catch(err => {
+    console.log('Não foi possível carregar Json, error:', err)
+    return null
+  })
+  return json
+}
+
+const jsonInterface = getJsonInfo('interface').then(response => response)
+const jsonFunctions = getJsonInfo('functions').then(response => response)
+
+
+const options = ['home', 'tutorial', 'interface', 'functions', 'reform']
 const callPageJson = [
-  {'page': 'home', 'call': (json) => json}, 
-  {'page': 'tutorial', 'call': (json) => json}, 
-  {'page':'tipagem', 'call': (json) => renderPageTipagem(json)}, 
-  {'page':'functions', 'call': (json) => renderPageFunctions(json)},
-  {'page':'reform', 'call': (json) => json},
+  {'page': 'home', 'call': (json) => null, "json": {}}, 
+  {'page': 'tutorial', 'call': (json) => null, "json": {}}, 
+  {'page':'interface', 'call': (json) => renderPageInterface(json), "json": jsonInterface}, 
+  {'page':'functions', 'call': (json) => renderPageFunctions(json), "json": jsonFunctions},
+  {'page':'reform', 'call': (json) => null, "json": {}},
 ]
 
-const changeContent = (page) => {
+const changeContent = async (page) => {
   const content = document.querySelector('.contentPage')
   const xhttp = new XMLHttpRequest()
   xhttp.onreadystatechange = function() {
@@ -20,22 +34,15 @@ const changeContent = (page) => {
   }
   xhttp.open("GET", `./pages/${page}/${page}.html`, true)
   xhttp.send()
-  getJsonInfo(`./pages/${page}/${page}.json`, page)
+
+  setTimeout(async () => {
+    for (const options of callPageJson) { 
+      const json = await options.json
+      options.page === page && options.call(json) 
+    }
+  }, 10)
 }
 
-const getJsonInfo = async (fileJson, getpage) => {
-  const json = await fetch(fileJson)
-    .then(response => response.json())
-    .catch(err => {
-    console.log('Não foi possível carregar Json, error:', err)
-    return null
-  })
-  if (json) {
-    for (const {page, call} of callPageJson) {
-      page === getpage && call(json)
-    }    
-  }
-}
 
 const clipBoardEffect = (value, id) => {
   const content = document.querySelector(`#${id}`)
@@ -72,7 +79,7 @@ const outHover = (type) => {
 }
 
 const initPage = () => {
-  changeContent('home')
+  changeContent('home').catch(er => console.log('Error Init:', er))
   renderMenu()        
 }
 
