@@ -21,13 +21,17 @@ const callPageJson = [
   {'page':'reform', 'call': (json) => null, "json": {}},
 ]
 
-const changeContent = async (page) => {
+const changeContent = (page) => {
   const content = document.querySelector('.contentPage')
   const xhttp = new XMLHttpRequest()
-  xhttp.onreadystatechange = function() {
+  xhttp.onreadystatechange = async function() {
     if (this.readyState == 4) {
       if (this.status == 200) { 
         content.innerHTML = `<div class='${page}Class' >${this.responseText}</div>`
+        for (const options of callPageJson) { 
+          const json = await options.json
+          options.page === page && options.call(json) 
+        }
       }
       if (this.status == 404) { content.innerHTML = `<div class='${page}Class' >Page not found.</div>` }
     }
@@ -36,10 +40,7 @@ const changeContent = async (page) => {
   xhttp.send()
 
   setTimeout(async () => {
-    for (const options of callPageJson) { 
-      const json = await options.json
-      options.page === page && options.call(json) 
-    }
+
   }, 10)
 }
 
@@ -79,7 +80,7 @@ const outHover = (type) => {
 }
 
 const initPage = () => {
-  changeContent('home').catch(er => console.log('Error Init:', er))
+  changeContent('home')
   renderMenu()        
 }
 
