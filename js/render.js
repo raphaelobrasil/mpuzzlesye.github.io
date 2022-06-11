@@ -1,4 +1,4 @@
-const renderPageTipagem = ({PuzzleTables, Modules, GachaSystem, Match3, subtitleH3, dica}) => { 
+const renderPageInterface = ({PuzzleTables, Modules, Match3, subtitleH3, dica}) => { 
   listInterface('PuzzleTables', PuzzleTables, subtitleH3, dica)
   listInterface('Modules', Modules, subtitleH3, dica)
   listInterface('Match3', Match3, subtitleH3, dica)

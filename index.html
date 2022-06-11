@@ -10,6 +10,7 @@
   <script src="./js/menu.js"></script>
   <script src="./js/render.js"></script>
   <script src="./js/content.js"></script>
+  <script src="./js/search.js"></script>
   <title>MPuzzleSyE</title>
 </head>
 <body>
@@ -33,8 +34,17 @@
             onclick={openMenu()}
             alt="abrir menu"
           ></div>
-          Match Puzzle System Engine V. 1.6.7
+          <div class="searchBoard">
+            <input type="text" value="" placeholder="Pesquisar" class="searchInput" onkeyup="getSearch(this.value)">
+            <div
+              class="searchIcon"
+            ></div>
+          </div>
+          <div onclick="changePage('home')" class="nameLib">
+            Match Puzzle System Engine V. 1.6.7
+          </div>  
         </div>
+        <div class="contentSearch"></div>
         <div class="contentPage"></div>
       </div>
     </div>

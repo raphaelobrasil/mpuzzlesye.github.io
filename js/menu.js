@@ -3,7 +3,6 @@ const openMenu = () => {
   const kebab = document.querySelector('.kebab')
   const header = document.querySelector('.header')
   menu.style.display = 'flex'
-  header.style.justifyContent = 'flex-end'
   kebab.style.display = 'none'
 }
 

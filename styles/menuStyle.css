@@ -18,22 +18,24 @@
 .menu #menuOptions .optionMenu {
     text-align: center;
     padding: 12px;
+    user-select: none;
     cursor: pointer;
 }
 
 .menu #menuOptions .optionMenuActive {
     background-color: #37464f;
-    color: #cccccc;
+    color: #eff9fa;
     text-align: center;
     border-bottom: 1px solid #cccccc;
     padding: 12px;
+    user-select: none;
     cursor: pointer;
 }
 
 .menu #menuOptions .optionMenu:hover {
     background-color: #37464f;
     text-shadow: 0px 2px 3px #555757;
-    color: #cccccc;
+    color: #ff8800;
 }
 
 .menu .logoMenu .closeMenu {
@@ -47,5 +49,5 @@
 }
 
 .menu .logoMenu .closeMenu:hover {
-    background-color: #cccccc;
+    background-color: #ff8800;
 }

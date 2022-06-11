@@ -20,13 +20,56 @@
 }
 
 .header .kebab:hover {
-  background-color: #cccccc;
+  background-color: #ff8800;
+}
+
+.header .searchBoard {
+  display: flex;
+  background-color: #f9fafa;
+  width: 60%;
+  border-radius: 8px;
+}
+
+.header .searchBoard .searchIcon {
+  background-color: #344245;
+  width: 24px;
+  height: 24px;
+  -webkit-mask: url(./../svg/search.svg) no-repeat center;
+  mask: url(./../svg/search.svg) no-repeat center;
+}
+
+.header .searchBoard .searchInput {
+  width: calc(100% - 24px);
+  background-color: #f9fafa;
+  padding: 0px 24px;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+}
+
+.header .nameLib {
+  cursor: pointer;
+  user-select: none;
+}
+
+.header .nameLib:hover {
+  color: #ff8800;
 }
 
 .content {
   width: 100%;
   min-height: 100%;
   padding-bottom: 48px;
+  position: relative;
+}
+
+.content .contentSearch {
+  display: none;
+  width: 100%;
+  min-height: calc(100% - 54px);
+  background-color: #f9fafa;
+  position: absolute;
+  z-index: 1;
 }
 
 .content .contentPage h1 {
@@ -148,7 +191,7 @@
   -webkit-mask: url(./../svg/tutorial.svg) no-repeat center;
   mask: url(./../svg/tutorial.svg) no-repeat center;
 }
-.content .menuBoard .tipagemBoardSVG {
+.content .menuBoard .interfaceBoardSVG {
   -webkit-mask: url(./../svg/typescript.svg) no-repeat center;
   mask: url(./../svg/typescript.svg) no-repeat center;
 }
