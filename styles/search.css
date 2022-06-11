@@ -1,0 +1,26 @@
+.content .contentSearch {
+  display: none;
+  flex-direction: column;
+  width: 100%;
+  min-height: calc(100% - 54px);
+  background-color: #f9fafa;
+  position: absolute;
+  z-index: 1;
+}
+
+.content .contentSearch h1 {
+  width: 50%;
+  height: fit-content;
+  padding-left: 24px;
+  margin-bottom: 0px;
+  border-bottom: 1px solid #344245;
+  color: #344245;
+}
+.content .contentSearch .searchLoading {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  background-color: red;
+  height: 64px;
+  /* visibility: hidden; */
+}

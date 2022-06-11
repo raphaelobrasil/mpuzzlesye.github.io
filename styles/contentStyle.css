@@ -63,15 +63,6 @@
   position: relative;
 }
 
-.content .contentSearch {
-  display: none;
-  width: 100%;
-  min-height: calc(100% - 54px);
-  background-color: #f9fafa;
-  position: absolute;
-  z-index: 1;
-}
-
 .content .contentPage h1 {
   max-width: 50%;
   padding-left: 24px;
