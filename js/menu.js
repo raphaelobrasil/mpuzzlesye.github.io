@@ -25,6 +25,8 @@ const changePage = (newOption) => {
       option.className = "optionMenu"
     }
   })
+  document.querySelector('.searchInput').value = ''
+  getSearch('')
 }
 
 const renderMenu = () => {
