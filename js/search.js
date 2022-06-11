@@ -82,7 +82,10 @@ const openSearching = async (value) => {
           searching(searchingInterface, searchingFunctions, value)
           document.querySelector('.searchbtnIcon').innerHTML = `<span onclick='closeSearch()'>X</span>`
         }
-        if (this.status == 404) { contentSearch.innerHTML = `Page not found.` }
+        if (this.status == 404) {           
+          contentSearch.innerHTML = `<div class="NoFound"><div class="NoFoundSVG" alt="noFound"></div><span>Page not found!</span></div>` 
+          document.querySelector('.NoFound').style.display = 'flex'
+        }
       }
     }
 
@@ -90,6 +93,7 @@ const openSearching = async (value) => {
     xhttp.send()
 
   } else {
+    document.querySelector('.searchbtnIcon').innerHTML = `<div class="searchIcon"></div>`
     contentSearch.style.display = 'none'
     contentPage.style.display = 'unset'
   }

@@ -14,9 +14,9 @@ const jsonFunctions = getJsonInfo('functions').then(response => response)
 
 const options = ['home', 'tutorial', 'interface', 'functions', 'reform']
 const callPageJson = [
-  {'page': 'home', 'call': (json) => null, "json": {}}, 
-  {'page': 'tutorial', 'call': (json) => null, "json": {}}, 
-  {'page':'reform', 'call': (json) => null, "json": {}},
+  {'page': 'home', 'call': (_json) => null, "json": {}}, 
+  {'page': 'tutorial', 'call': (_json) => null, "json": {}}, 
+  {'page':'reform', 'call': (_json) => null, "json": {}},
   {'page':'interface', 'call': (json) => renderPageInterface(json), "json": jsonInterface}, 
   {'page':'functions', 'call': (json) => renderPageFunctions(json), "json": jsonFunctions},
 ]
@@ -33,7 +33,10 @@ const changeContent = (page) => {
           options.page === page && options.call(json) 
         }
       }
-      if (this.status == 404) { content.innerHTML = `<div class='${page}Class' >Page not found.</div>` }
+      if (this.status == 404) { 
+        content.innerHTML = `<div class="NoFound"><div class="NoFoundSVG" alt="noFound"></div><span>Page not found!</span></div>` 
+        document.querySelector('.NoFound').style.display = 'flex'
+      }
     }
   }
   xhttp.open("GET", `./pages/${page}/${page}.html`, true)
