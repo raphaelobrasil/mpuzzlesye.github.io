@@ -78,8 +78,4 @@ const outHover = (type) => {
   svgIcon.style.backgroundColor = '#344245';
 }
 
-const initPage = () => {
-  changeContent('home')
-  renderMenu()        
-}
 
