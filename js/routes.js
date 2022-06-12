@@ -7,4 +7,4 @@ const initPage = () => {
   renderMenu()        
 }
 
-//?first=value&&second=value
+// ?first=value&&second=value
