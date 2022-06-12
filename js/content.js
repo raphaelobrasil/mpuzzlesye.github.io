@@ -39,7 +39,7 @@ const changeContent = (page) => {
       }
     }
   }
-  xhttp.open("GET", `./pages/${page}/${page}.html`, true)
+  xhttp.open("GET", `./pages/${page}`, true)
   xhttp.send()
 }
 
