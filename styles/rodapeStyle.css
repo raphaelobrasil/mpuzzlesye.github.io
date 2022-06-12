@@ -1,0 +1,57 @@
+.rodape {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 12px;
+  width: 100%;
+  min-height: 100px;
+  background-color: #344245;
+  padding: 12px 0px;
+  border-top: 1px solid #37464f;
+}
+
+.rodape .rodapeTitle {
+  font-size: 22px;
+  color: #eff9fa;
+  text-align: center;
+  user-select: none;
+}
+
+.rodape .assign {
+  font-size: 14px;
+  color: #eff9fa;
+  text-align: center;
+  user-select: none;
+}
+
+.rodape .rodapeSVG {
+  display: flex;
+  justify-content: center;
+  column-gap: 12px;
+}
+
+.rodape .rodapeSVG .githubSVG {
+  background-color: #eff9fa;
+  width: 24px;
+  height: 24px;
+  -webkit-mask: url(./../svg/github.svg) no-repeat center;
+  mask: url(./../svg/github.svg) no-repeat center;
+  cursor: pointer;
+}
+
+.rodape .rodapeSVG .linkedinSVG {
+  background-color: #eff9fa;
+  width: 24px;
+  height: 24px;
+  -webkit-mask: url(./../svg/linkedin.svg) no-repeat center;
+  mask: url(./../svg/linkedin.svg) no-repeat center;
+  cursor: pointer;
+}
+
+.rodape .rodapeSVG .githubSVG:hover {
+  background-color: #ff8800;
+}
+
+.rodape .rodapeSVG .linkedinSVG:hover {
+  background-color: #ff8800;
+}

@@ -2,34 +2,78 @@
 <html lang=”pt-br”>
 <head>
   <meta charset=”UTF-8”>
-  <link rel="stylesheet" href="/globalStyle.css">
-  <script src="/js/w3IncludeHtml.js"></script>
+  <link rel="stylesheet" href="./styles/globalStyle.css">
+  <link rel="stylesheet" href="./styles/menuStyle.css">
+  <link rel="stylesheet" href="./styles/contentStyle.css">
+  <link rel="stylesheet" href="./styles/rodapeStyle.css">
+  <link rel="stylesheet" href="./styles/codeBoard.css">
+  <link rel="stylesheet" href="./styles/search.css">
+  <script src="./js/menu.js"></script>
+  <script src="./js/render.js"></script>
+  <script src="./js/content.js"></script>
+  <script src="./js/search.js"></script>
   <title>MPuzzleSyE</title>
-  <script>
-    const openMenu = () => {
-      const menu = document.querySelector('.menu')
-      menu.style.display = "flex"
-    }
-  </script>
 </head>
 <body>
     <div class="view">
-      <div class="menu">MENU</div>
+      <div class="menu">
+        <div class="logoMenu">
+          <div
+            onclick={closeMenu()}
+            class="closeMenu"
+            alt="fechar menu"
+          ></div>
+        </div>
+        <div class="contentMenu">
+          <div id="menuOptions"></div>
+        </div>
+      </div>
       <div class="content">
         <div class="header">
-          <button
+          <div
+            class="kebab"
             onclick={openMenu()}
-          >
-            Teste
-          </button>
-          header
+            alt="abrir menu"
+          ></div>
+          <div class="searchBoard">
+            <input type="text" value="" placeholder="Pesquisar" class="searchInput" onkeyup="getSearch(this.value)">
+            <div class="searchbtnIcon">
+              <div
+                class="searchIcon"
+              ></div>
+            </div>
+          </div>
+          <div onclick="changePage('home')" class="nameLib">
+            Match Puzzle System Engine V. 1.6.7
+          </div>  
         </div>
-        <div w3-include-html="./pages/home/home.html"></div>
+        <div class="contentSearch"></div>
+        <div class="contentPage"></div>
       </div>
     </div>
-    <div class="rodape">RODAPE</div>
-  <script>
-    includeHTML()
+    <div class="rodape">
+      <div class="rodapeTitle">Match Puzzle System Engine</div>
+      <div class="rodapeSVG">
+        <a href="https://github.com/raphaelobrasil/MPuzzleSyE" target="_blank">
+          <div
+          class="githubSVG"
+          alt="github"
+          ></div>
+        </a>
+        <a href="https://www.linkedin.com/in/raphael-brasil/" target="_blank">
+          <div
+          class="linkedinSVG"
+          alt="linkedin"
+          ></div>
+        </a>
+      </div>
+      <div class="assign">
+        <p>Raphael Brasil</p>
+        <p>2022</p>
+      </div>
+    </div>
+  <script>    
+    initPage()
   </script>
   <script src="/reload/reload.js"></script>
 </body>

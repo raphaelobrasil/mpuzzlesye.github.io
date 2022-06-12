@@ -1,0 +1,91 @@
+.content .codeBoard {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 72px);
+  background-color: #edefef;
+  border-radius: 4px;
+  padding: 12px;
+  margin-left: 24px;
+  position: relative;
+  color: #344245;
+}
+
+.content .codeBoard .codeLine {
+  display: flex;
+}
+
+.content .codeBoard .codeLine .codeScope {  
+  max-width: 85%;
+  font-family: 'Nunito', sans-serif;
+  font-style: italic;
+}
+
+.content .codeBoard .simbol {
+  user-select: none;
+  font-family: 'Lato', sans-serif;
+  padding: 0px 12px;
+}
+
+.content .codeBoard .clipboardSVG {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background-color: #344245;
+  -webkit-mask: url(./../svg/clipboard.svg) no-repeat center;
+  mask: url(./../svg/clipboard.svg) no-repeat center;
+  cursor: pointer;
+}
+
+.content .codeBoard .clipboardSVG:hover {
+  background-color: #ff8800;
+}
+
+.content .codeBoard .clipboardSuccessSVG {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background-color: #ff8800;
+  -webkit-mask: url(./../svg/clipboardSuccess.svg) no-repeat center;
+  mask: url(./../svg/clipboardSuccess.svg) no-repeat center;
+  cursor: pointer;
+}
+
+.content .codeBoard #copySucess {
+  display: none;
+  position: absolute;
+  background-color: #3ab816;
+  color: #eff9fa;
+  padding: 8px;
+  border-radius: 4px;
+  top: -48px;
+  left: calc(50% - 36px);
+}
+
+.content .codeBoard #copySucess #closeNotification {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  background-color: #e82e2e;
+
+  border: 1px solid transparent;
+  border-radius: 50%;
+  color: #eff9fa;
+  font-family: 'Nunito', sans-serif;
+
+  position: absolute;
+  top: -10px;
+  right: -10px;
+
+  cursor: pointer;
+}
+
+.content .codeBoard #copySucess #closeNotification:hover {
+  color: #344245;
+  border: 1px solid #344245;
+}
