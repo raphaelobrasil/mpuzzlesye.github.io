@@ -89,7 +89,7 @@ const openSearching = async (value) => {
       }
     }
 
-    xhttp.open("GET", `./pages/search/search.html`, true)
+    xhttp.open("GET", `./pages/search`, true)
     xhttp.send()
 
   } else {
