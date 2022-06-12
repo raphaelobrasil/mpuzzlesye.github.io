@@ -1,4 +1,617 @@
 <h1>Tutorial</h1>
 <h3>
-    Aqui irei instruir como usar o fluxo lógico básico do jogo.
+    Há duas formas básicas para o uso do MPuzzleSyE. A primeira chamo de <span style="color: #ff8800;">Step-To-Step</span>, a segunda de <span style="color: #ff8800;">End-To-End</span>. <br/>
+    É importante frisar que o fluxo principal é assíncrono, portanto, durante a execução dos métodos, desenvolva sempre com a possibilidade de ter que lidar com Promises. 
 </h3>
+<div class="tableContent" style="width: 95%;">
+    <div class="cardContent">
+        <div class="descriptionContent" style="max-width: 100%;">
+            <span>
+                <strong>Observação:</strong> 
+                Todas as funções do MPuzzleSyE possui carga de processamento menor que 0.02s em condições normais. Inclusive, a própria função do End-To-End cumpre esse requisito.
+                Porém, o layout também afetará diretamente no desempenho do jogo, sugiro tomar cuidado com o uso de dados pesados em conjunto com o fluxo, quanto mais limpo for, melhor a performance. <br/><br/>
+                A renderização do tabuleiro e todo o layout ficará seu a critério, aqui irei apenas instruir como utilizar o fluxo lógico. 
+            </span>
+        </div>
+    </div>
+</div>
+<h2>
+    Método <span style="color: #ff8800;">Step-To-Step</span> (STS)
+</h2>
+<h3>
+    O fluxo <span style="color: #ff8800;">STS</span> é sem dúvida o fluxo mais flexível e leve. Com ele você pode ir executando cada etapa do processo
+    enquanto reage visualmente, a probabilidade de criar um fluxo onde o jogador sinta "a espera" é menor, em troca, há mais custo de desenvolvimento. <br/><br/>
+    Primeiro, é necessário importar as funções que serão utilizadas e configurar o tipo de conteúdo que será usado. <br/>
+    O conteúdo é a informação preenchida no tabuleiro, em default é configurado com 5 cores: 
+    <span style="color: #ff8800;">dark</span>, 
+    <span style="color: #ff8800;">light</span>, 
+    <span style="color: #ff8800;">red</span>, 
+    <span style="color: #ff8800;">blue</span> e 
+    <span style="color: #ff8800;">green</span>.<br/>
+    E aqui também definimos as categorias de efeitos, que são "conteúdo especial" que causam efeitos diversificados, por default temos as categorias <span style="color: #ff8800;">pattern_four</span> e <span style="color: #ff8800;">pattern_five</span> que são conquistados ao realizar matchs com 4 e 5 conteúdos em uma combinação, respectivamente.<br/>
+    E há o conteúdo <span style="color: #ff8800;">void</span> que define quando uma célula do tabuleiro está vazia.  <br/><br/>
+    Os conteúdos configurados no <span style="color: #ff8800;">stoneConfig</span> recebem ids enumerados a partir do 1. O id 0 é reservado para o espaço vázio, <span style="color: #ff8800;">void</span>.  
+</h3>
+<h3>
+    Imports
+</h3>
+<div class="codeBoard">
+    <div id="copySucess">Copiado com sucesso! <div id="closeNotification" onclick="clearNotification()">x</div></div>
+    <div
+        onclick="clipBoardEffect(`import { stoneConfig, gameStart, isMatch, clearMatchs, category, activeEffectsInMatchs, sequenceHistory, clearTableMatchAndEffects, organizeStructure, insertNewStones } from 'mpuzzlesye'`, 'clipBoardmpuzzleSye1')"
+        class="clipboardSVG"
+        id="clipBoardmpuzzleSye1"
+        alt="copiar"
+    ></div>
+    <div class="codeLine">
+        <div class="simbol">$</div>
+        <div class="codeScope">
+            <div>import { stoneConfig, gameStart, isMatch, clearMatchs, category, activeEffectsInMatchs, sequenceHistory, clearTableMatchAndEffects, organizeStructure, insertNewStones } from 'mpuzzlesye'</div>
+        </div>
+    </div>
+</div>
+<h3>
+    Conteúdo default
+</h3>
+<div class="codeBoard">
+    <div id="copySucess">Copiado com sucesso! <div id="closeNotification" onclick="clearNotification()">x</div></div>
+    <div
+        onclick="clipBoardEffect('const config = stoneConfig({})', 'clipBoardmpuzzleSye2')"
+        class="clipboardSVG"
+        id="clipBoardmpuzzleSye2"
+        alt="copiar"
+    ></div>
+    <div class="codeLine">
+        <div class="simbol">$</div>
+        <div class="codeScope">
+            <div>const config = stoneConfig({})</div>
+        </div>
+    </div>
+</div>
+<h3>
+    Conteúdo customizado
+</h3>
+<div class="codeBoard">
+    <div id="copySucess">Copiado com sucesso! <div id="closeNotification" onclick="clearNotification()">x</div></div>
+    <div
+        onclick="clipBoardEffect(`const config = stoneConfig({stones: ['ONE', 'TWO', 'THREE', 'FOUR', 'FIVE'], categorys: ['A', 'B']})`, 'clipBoardmpuzzleSye3')"
+        class="clipboardSVG"
+        id="clipBoardmpuzzleSye3"
+        alt="copiar"
+    ></div>
+    <div class="codeLine">
+        <div class="simbol">$</div>
+        <div class="codeScope">
+            <div>const config = stoneConfig({stones: ['ONE', 'TWO', 'THREE', 'FOUR', 'FIVE'], categorys: ['A', 'B']})</div>
+        </div>
+    </div>
+</div>
+<h3>
+    Configurado o conteúdo, que para ficar mais fácil o entendimento, irei chamar de <span style="color: #ff8800;">pedras</span>. Precisamos iniciar o tabuleiro preenchido com as pedras configuradas. <br/>
+    Há uma regra aqui, precisamos criar um <span style="color: #ff8800;">tabuleiro limpo</span>, esse "conceito" é quando o tabuleiro está com as pedras bem distribuídas entre as células, sem nenhum match. <br/>
+    Aqui apresento o recurso de <span style="color: #ff8800;">fHelps</span>. São métodos de nível maior que invocam métodos unitários simples e realizam um conjunto de ações mais complexas, facilitando a utilização dos métodos unitários. <br/>
+    Iremos criar um tabuleiro 5x7 (5 linhas e 7 colunas), sem matchs e preenchidos com as pedras definidas.
+</h3>
+<div class="codeBoard">
+    <div id="copySucess">Copiado com sucesso! <div id="closeNotification" onclick="clearNotification()">x</div></div>
+    <div
+        onclick="clipBoardEffect(`const table = await gameStart({ rowCount: 5, columnCount: 7, config })`, 'clipBoardmpuzzleSye4')"
+        class="clipboardSVG"
+        id="clipBoardmpuzzleSye4"
+        alt="copiar"
+    ></div>
+    <div class="codeLine">
+        <div class="simbol">$</div>
+        <div class="codeScope">
+            <div>const table = await gameStart({ rowCount: 5, columnCount: 7, config })</div>
+        </div>
+    </div>
+</div>
+
+<h3>
+    Validando combinações<br/><br/>
+    Quando houver movimento realizado pelo jogador, devemos validar se é movimento válido ou não. Se for invalido, deve retornar o estado do tabuleiro para a situação anterior ao movimento invalido. <br/>
+    Se for movimento válido, significa que houve combinação, então deverá ser feito o processo de analise da combinação. <br/><br/>
+    Com o <span style="color: #ff8800;">fHelps</span> é possível retornar essas 3 propriedades: <br/>
+    • <span style="color: #ff8800;">isMatch</span>: Informará se é válido ou inválido; <br/> 
+    • <span style="color: #ff8800;">effects</span>: É um array, que se vier vazio, representa que não houve efeito de categoria; <br/>
+    • <span style="color: #ff8800;">match</span>: Contém as informações de todos os matchs, tanto o simples (vertical e horizontal) quanto os cruzados. 
+</h3>
+<div class="codeBoard">
+    <div id="copySucess">Copiado com sucesso! <div id="closeNotification" onclick="clearNotification()">x</div></div>
+    <div
+        onclick="clipBoardEffect(`const matchVerify = await isMatch({ table, config })`, 'clipBoardmpuzzleSye5')"
+        class="clipboardSVG"
+        id="clipBoardmpuzzleSye5"
+        alt="copiar"
+    ></div>
+    <div class="codeLine">
+        <div class="simbol">$</div>
+        <div class="codeScope">
+            <div>const matchVerify = await isMatch({ table, config })</div>
+        </div>
+    </div>
+</div>
+
+<h3>
+    Caso <span style="color: #ff8800;">não</span> haja efeito de categoria<br/><br/>
+    Se o movimento for válido e não houver efeito de categoria, devemos seguir com a remoção das pedras combinadas do tabuleiro, deixando os espaços vazios. 
+</h3>
+<div class="codeBoard">
+    <div id="copySucess">Copiado com sucesso! <div id="closeNotification" onclick="clearNotification()">x</div></div>
+    <div
+        onclick="clipBoardEffect(`const clearTable = await clearMatchs(table, matchVerify.match)`, 'clipBoardmpuzzleSye6')"
+        class="clipboardSVG"
+        id="clipBoardmpuzzleSye6"
+        alt="copiar"
+    ></div>
+    <div class="codeLine">
+        <div class="simbol">$</div>
+        <div class="codeScope">
+            <div>const clearTable = await clearMatchs(table, matchVerify.match)</div>
+        </div>
+    </div>
+</div>
+
+<h3>
+    Caso haja efeito de categoria<br/><br/>
+    Quando o <span style="color: #ff8800;">matchVerify.effects</span> retornar um array preenchido, será necessário aplicar os efeitos de categorias ativados. Nesse momento, será necessário configurar 
+    a lista de categorias que serão efetivamente utilizadas pelo tabuleiro, suas regras e métodos que executarão quando ativos. No stoneConfig declaramos as nomenclaturas 
+    das categorias existentes. Nesse momento declararemos quais categorias realmente serão usadas e como serão usadas. <br/>
+    Além disto, o método <span style="color: #ff8800;">category</span> possui três métodos: <br/>
+    <span style="color: #ff8800;">categoryApplication</span>: Método utilizado para aplicar as categorias nas pedras do tabuleiro; <br/>
+    <span style="color: #ff8800;">defaultfive</span>: Método que possui em propriedade outro método para aplicar os efeitos default da categoria de 5 pedras combinadas; <br/>
+    <span style="color: #ff8800;">defaultfour</span>: Método que possui em propriedade outro método para aplicar os efeitos default da categoria de 4 pedras combinadas. <br/><br/>
+</h3>
+<div class="codeBoard">
+    <div id="copySucess">Copiado com sucesso! <div id="closeNotification" onclick="clearNotification()">x</div></div>
+    <div
+        onclick="clipBoardEffect(`const { categoryApplication, defaultfive, defaultfour } = category\r\n\r\nconst activeCategorys = [\r\n  {\r\n   effect: defaultfour.patternFour,\r\n   category: 'pattern_four',\r\n   stoneIds: [1, 2, 3, 4, 5],\r\n   rule: 4\r\n  },{\r\n   effect: defaultfive.patternFive,\r\n   category: 'pattern_five',\r\n   stoneIds: [1, 2, 3, 4, 5],\r\n   rule: 5\r\n  }\r\n]`, 'clipBoardmpuzzleSye7')"
+        class="clipboardSVG"
+        id="clipBoardmpuzzleSye7"
+        alt="copiar"
+    ></div>
+    <div class="codeLine">
+        <div class="simbol">$</div>
+        <div class="codeScope">
+            <div>const { categoryApplication, defaultfive, defaultfour } = category</div>
+        </div>
+    </div>
+    <div class="codeLine">
+        <div class="simbol">$</div>
+        <div class="codeScope"></div>
+    </div>
+    <div class="codeLine">
+        <div class="simbol">$</div>
+        <div class="codeScope">
+            <div>const activeCategorys = [</div>
+        </div>
+    </div>
+    <div class="codeLine">
+        <div class="simbol">$</div>
+        <div class="codeScope">
+            <div>&nbsp;&nbsp;{</div>
+        </div>
+    </div>
+    <div class="codeLine">
+        <div class="simbol">$</div>
+        <div class="codeScope">
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;effect: defaultfour.patternFour,</div>
+        </div>
+    </div>
+    <div class="codeLine">
+        <div class="simbol">$</div>
+        <div class="codeScope">
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;category: 'pattern_four',</div>
+        </div>
+    </div>
+    <div class="codeLine">
+        <div class="simbol">$</div>
+        <div class="codeScope">
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;stoneIds: [1, 2, 3, 4, 5],</div>
+        </div>
+    </div>
+    <div class="codeLine">
+        <div class="simbol">$</div>
+        <div class="codeScope">
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;rule: 4</div>
+        </div>
+    </div>
+    <div class="codeLine">
+        <div class="simbol">$</div>
+        <div class="codeScope">
+            <div>&nbsp;&nbsp;},{</div>
+        </div>
+    </div>
+    <div class="codeLine">
+        <div class="simbol">$</div>
+        <div class="codeScope">
+            &nbsp;&nbsp;&nbsp;&nbsp;effect: defaultfive.patternFive,
+        </div>
+    </div>
+    <div class="codeLine">
+        <div class="simbol">$</div>
+        <div class="codeScope">
+            &nbsp;&nbsp;&nbsp;&nbsp;category: 'pattern_five',
+        </div>
+    </div>
+    <div class="codeLine">
+        <div class="simbol">$</div>
+        <div class="codeScope">
+            &nbsp;&nbsp;&nbsp;&nbsp;stoneIds: [1, 2, 3, 4, 5],
+        </div>
+    </div>
+    <div class="codeLine">
+        <div class="simbol">$</div>
+        <div class="codeScope">
+            &nbsp;&nbsp;&nbsp;&nbsp;rule: 5
+        </div>
+    </div>
+    <div class="codeLine">
+        <div class="simbol">$</div>
+        <div class="codeScope">
+            <div>&nbsp;&nbsp;}</div>
+        </div>
+    </div>
+    <div class="codeLine">
+        <div class="simbol">$</div>
+        <div class="codeScope">
+            <div>]</div>
+        </div>
+    </div>
+</div>
+
+<h3>
+    Ativando efeitos de categoria<br/>
+    Após configurar as categorias que serão utilizadas, precisaremos verificar qual efeito foi ativado no match e executá-lo. 
+</h3>
+<div class="codeBoard">
+    <div id="copySucess">Copiado com sucesso! <div id="closeNotification" onclick="clearNotification()">x</div></div>
+    <div
+        onclick="clipBoardEffect(`const explodeStones = await activeEffectsInMatchs({ table, activeCategorys, occurrences: effects })`, 'clipBoardmpuzzleSye8')"
+        class="clipboardSVG"
+        id="clipBoardmpuzzleSye8"
+        alt="copiar"
+    ></div>
+    <div class="codeLine">
+        <div class="simbol">$</div>
+        <div class="codeScope">
+            <div>const explodeStones = await activeEffectsInMatchs({ table, activeCategorys, occurrences: effects })</div>
+        </div>
+    </div>
+</div>
+
+<h3>
+    Sequência de efeito<br/>
+    Após executado o primeiro efeito, ele pode desencadear uma <span style="color: #ff8800;">onda de efeitos</span>, sendo ativados por serem atingidos pelo efeito anterior. Então, devemos verificar até onde essa "onda" vai e sua sequência.   
+</h3>
+<div class="codeBoard">
+    <div id="copySucess">Copiado com sucesso! <div id="closeNotification" onclick="clearNotification()">x</div></div>
+    <div
+        onclick="clipBoardEffect(`const result = await sequenceHistory({ sequenceInitial: explodeStones, table, effects: activeCategorys })`, 'clipBoardmpuzzleSye9')"
+        class="clipboardSVG"
+        id="clipBoardmpuzzleSye9"
+        alt="copiar"
+    ></div>
+    <div class="codeLine">
+        <div class="simbol">$</div>
+        <div class="codeScope">
+            <div>const result = await sequenceHistory({ sequenceInitial: explodeStones, table, effects: activeCategorys })</div>
+        </div>
+    </div>
+</div>
+
+<h3>
+    Após ativado os efeitos de categoria, devemos seguir com a remoção das pedras combinadas do tabuleiro <span style="color: #ff8800;">e as pedras afetadas pelos efeitos de categoria</span>, deixando os espaços vazios. 
+</h3>
+<div class="codeBoard">
+    <div id="copySucess">Copiado com sucesso! <div id="closeNotification" onclick="clearNotification()">x</div></div>
+    <div
+        onclick="clipBoardEffect(`const clearTable = await clearTableMatchAndEffects({ table, match, explodeStones, result })`, 'clipBoardmpuzzleSye10')"
+        class="clipboardSVG"
+        id="clipBoardmpuzzleSye10"
+        alt="copiar"
+    ></div>
+    <div class="codeLine">
+        <div class="simbol">$</div>
+        <div class="codeScope">
+            <div>const clearTable = await clearTableMatchAndEffects({ table, match, explodeStones, result })</div>
+        </div>
+    </div>
+</div>
+
+
+<h3>
+    <span style="color: #ff8800;">No fluxo STS, os dois caminhos (com ou sem efeito) é iniciado no mesmo ponto e se cruzam novamente após o método de limpeza</span>
+</h3>
+
+<h3>
+    Aplicando a categoria nas pedras<br/><br/>
+    Depois que a tabela foi limpa, devemos verificar se houve combinações elegíveis para receber efeitos de categoria e serem evoluídas para "pedras especiais". <br/><br/>
+    E aqui recebemos mais uma definição nova, o <span style="color: #ff8800;">move</span>. Nela você deve informar qual foi a pedra que o jogador segurou e arrastou, assim como
+    a pedra na qual ele "soltou" a pedra arrastada.<br/><br/>
+    Obs.: O <span style="color: #ff8800;">move</span> também pode ser undefined, para situações onde o match não foi realizado por movimento direto do usuário. 
+</h3>
+<div class="codeBoard">
+    <div id="copySucess">Copiado com sucesso! <div id="closeNotification" onclick="clearNotification()">x</div></div>
+    <div
+        onclick="clipBoardEffect(`const move = { drag: { row: 3, column: 2 }, drop: { row: 2, column: 2 } }\r\nconst applyCategory = await categoryApplication({ table: clearTable, activeCategorys, matchs: match, config, move })`, 'clipBoardmpuzzleSye11')"
+        class="clipboardSVG"
+        id="clipBoardmpuzzleSye11"
+        alt="copiar"
+    ></div>
+    <div class="codeLine">
+        <div class="simbol">$</div>
+        <div class="codeScope">
+            <div>const move = { drag: { row: 3, column: 2 }, drop: { row: 2, column: 2 } }</div>
+        </div>
+    </div>
+    <div class="codeLine">
+        <div class="simbol">$</div>
+        <div class="codeScope">
+            <div>const applyCategory = await categoryApplication({ table: clearTable, activeCategorys, matchs: match, config, move })</div>
+        </div>
+    </div>
+</div>
+
+<h3>
+    Após aplicar o efeito de categoria, devemos reorganizar o tabuleiro. Ele foi limpo e possui espaços vazios de maneira aleatória. <br/>
+    A lógica básica do match 3 puzzle é que ao elimininar a pedra de cima, a de baixo deve subir e deixar o seu espaço vazio e assim sucessivamente até que os espaços vazios fiquem sempre na última linha do tabuleiro.
+</h3>
+<div class="codeBoard">
+    <div id="copySucess">Copiado com sucesso! <div id="closeNotification" onclick="clearNotification()">x</div></div>
+    <div
+        onclick="clipBoardEffect(`const reorganizeNewTable = await organizeStructure(applyCategory)`, 'clipBoardmpuzzleSye12')"
+        class="clipboardSVG"
+        id="clipBoardmpuzzleSye12"
+        alt="copiar"
+    ></div>
+    <div class="codeLine">
+        <div class="simbol">$</div>
+        <div class="codeScope">
+            <div>const reorganizeNewTable = await organizeStructure(applyCategory)</div>
+        </div>
+    </div>
+</div>
+
+<h3>
+    Com o tabuleiro reorganizado, devemos preencher novamente os espaços vazios para dar continuidade no jogo. 
+</h3>
+<div class="codeBoard">
+    <div id="copySucess">Copiado com sucesso! <div id="closeNotification" onclick="clearNotification()">x</div></div>
+    <div
+        onclick="clipBoardEffect(`const newTable = await insertNewStones(reorganizeNewTable, config)`, 'clipBoardmpuzzleSye13')"
+        class="clipboardSVG"
+        id="clipBoardmpuzzleSye13"
+        alt="copiar"
+    ></div>
+    <div class="codeLine">
+        <div class="simbol">$</div>
+        <div class="codeScope">
+            <div>const newTable = await insertNewStones(reorganizeNewTable, config)</div>
+        </div>
+    </div>
+</div>
+
+<h3>
+    Com isso, temos o fluxo <span style="color: #ff8800;">STS</span> completo. 
+</h3>
+
+<h2>
+    Método <span style="color: #ff8800;">End-To-End</span> (ETE)
+</h2>
+<h3>
+    O fluxo <span style="color: #ff8800;">ETE</span> é um método <span style="color: #ff8800;">fHelps</span>. Ele simula todo o fluxo básico do <span style="color: #ff8800;">STS</span> de uma vez só.
+    Por isso que é o fluxo com o menor custo de desenvolvimento e mais custo de processamento, entretanto, ele retornará um objeto com o resultado separado de cada etapa do fluxo STS.
+</h3>
+
+<h3>
+    Imports
+</h3>
+<div class="codeBoard">
+    <div id="copySucess">Copiado com sucesso! <div id="closeNotification" onclick="clearNotification()">x</div></div>
+    <div
+        onclick="clipBoardEffect(`import { fEventsProcess, stoneConfig, category, gameStart } from 'mpuzzlesye'`, 'clipBoardmpuzzleSye14')"
+        class="clipboardSVG"
+        id="clipBoardmpuzzleSye14"
+        alt="copiar"
+    ></div>
+    <div class="codeLine">
+        <div class="simbol">$</div>
+        <div class="codeScope">
+            <div>import { fEventsProcess, stoneConfig, category, gameStart } from 'mpuzzlesye'</div>
+        </div>
+    </div>
+</div>
+<h3>
+    O uso do <span style="color: #ff8800;">stoneConfig</span>, <span style="color: #ff8800;">category</span>, <span style="color: #ff8800;">gameStart</span> e <span style="color: #ff8800;">move</span> 
+    seguem a mesma lógica, princípio e estrutura que foi explicado no fluxo <span style="color: #ff8800;">STS</span>. Então, aqui focarei em explicar somente sobre o método <span style="color: #ff8800;">fEventsProcess</span>.
+</h3>
+
+<h3>
+    <span style="color: #ff8800;">fEventsProcess</span><br/><br/>
+    Método responsável por realizar o fluxo <span style="color: #ff8800;">ETE</span>, deve retornar um objeto completo com todas as informações que podem ser encontradas no fluxo <span style="color: #ff8800;">STS</span>.<br/>
+    Em situação normal, o tempo de execução é menor que 0.02s, mas é mais propenso a ser afetado pela aplicação que o consumirá.  <br/><br/>
+    Obs.: O <span style="color: #ff8800;">move</span> também pode ser undefined, para situações onde o match não foi realizado por movimento direto do usuário. 
+</h3>
+<div class="codeBoard">
+    <div id="copySucess">Copiado com sucesso! <div id="closeNotification" onclick="clearNotification()">x</div></div>
+    <div
+        onclick="clipBoardEffect(`const completFlow = await fEventsProcess({ table: valueTableAfterMove, config, activeCategorys, move })`, 'clipBoardmpuzzleSye15')"
+        class="clipboardSVG"
+        id="clipBoardmpuzzleSye15"
+        alt="copiar"
+    ></div>
+    <div class="codeLine">
+        <div class="simbol">$</div>
+        <div class="codeScope">
+            <div>const completFlow = await fEventsProcess({ table: valueTableAfterMove, config, activeCategorys, move })</div>
+        </div>
+    </div>
+</div>
+
+
+<h2>
+    Considerações finais.
+</h2>
+
+<h3>
+  <span style="color: #ff8800;">COMBOS</span>:<br/><br/>
+    Após realizar o fluxo completo, independente do fluxo escolhido (STS ou ETE), isso representa somente "1 jogada". <br/>
+    Tem situações onde o <span style="color: #ff8800;">insertNewStones</span> preenchererá o tabuleiro e o novo tabuleiro já venha com combinações válidas feitas. <br/>
+    Nesse cenário, pela regra básica do match 3 puzzle, isso contaria como <span style="color: #ff8800;">combo</span>. Daí, devemos novamente devolver o tabuleiro ao fluxo escolhido. 
+    Só que desta vez, não houve movimento por parte do usuário e sim é uma continuação da primeira jogada, classificando a continuidade como <span style="color: #ff8800;">combo</span>. <br/>
+    Para realizar esse procedimento, há diversas formas e realmente deixo em aberto para fazê-lo como achar melhor. <br/>
+    Para exemplo, coloquei um demonstrativo abaixo, com certeza pode haver formas melhores de fazer isso. Mas, esse exemplo demonstra como pode ser feito. 
+</h3>
+<div class="codeBoard">
+    <div id="copySucess">Copiado com sucesso! <div id="closeNotification" onclick="clearNotification()">x</div></div>
+    <div
+        onclick="clipBoardEffect(`fEventsProcess({ table: valueTableAfterMove, config, activeCategorys, move })\r\n  .then(async (response) => {\r\n    if (response.newTable && response.isMatch.isMatch) {\r\n      let combo = [response]\r\n      let newStep = await fEventsProcess({ table: response.newTable, config, activeCategorys })\r\n      while (combo[combo.length - 1].isMatch.isMatch) {\r\n        newStep = await fEventsProcess({ table: newStep.newTable, config, activeCategorys })\r\n        combo = [...combo, newStep]\r\n    }\r\n  }\r\n})`, 'clipBoardmpuzzleSye16')"
+        class="clipboardSVG"
+        id="clipBoardmpuzzleSye16"
+        alt="copiar"
+    ></div>
+    <div class="codeLine">
+        <div class="simbol">$</div>
+        <div class="codeScope">
+            <div>fEventsProcess({ table: valueTableAfterMove, config, activeCategorys, move })</div>
+        </div>
+    </div>
+    <div class="codeLine">
+        <div class="simbol">$</div>
+        <div class="codeScope">
+            <div>&nbsp;&nbsp;.then(async (response) => {</div>
+        </div>
+    </div>
+    <div class="codeLine">
+        <div class="simbol">$</div>
+        <div class="codeScope">
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;if (response.newTable && response.isMatch.isMatch) {</div>
+        </div>
+    </div>
+    <div class="codeLine">
+        <div class="simbol">$</div>
+        <div class="codeScope">
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let combo = [response]</div>
+        </div>
+    </div>
+    <div class="codeLine">
+        <div class="simbol">$</div>
+        <div class="codeScope">
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let newStep = await fEventsProcess({ table: response.newTable, config, activeCategorys })</div>
+        </div>
+    </div>
+    <div class="codeLine">
+        <div class="simbol">$</div>
+        <div class="codeScope">
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;while (combo[combo.length - 1].isMatch.isMatch) {</div>
+        </div>
+    </div>
+    <div class="codeLine">
+        <div class="simbol">$</div>
+        <div class="codeScope">
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;newStep = await fEventsProcess({ table: newStep.newTable, config, activeCategorys })</div>
+        </div>
+    </div>
+    <div class="codeLine">
+        <div class="simbol">$</div>
+        <div class="codeScope">
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;combo = [...combo, newStep]</div>
+        </div>
+    </div>
+    <div class="codeLine">
+        <div class="simbol">$</div>
+        <div class="codeScope">
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</div>
+        </div>
+    </div>
+    <div class="codeLine">
+        <div class="simbol">$</div>
+        <div class="codeScope">
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;}</div>
+        </div>
+    </div>
+    <div class="codeLine">
+        <div class="simbol">$</div>
+        <div class="codeScope">
+            <div>&nbsp;&nbsp;})</div>
+        </div>
+    </div>
+</div>
+
+<h3>
+  <span style="color: #ff8800;">ATIVAÇÃO</span>:<br/><br/>
+  As pedras especiais contém efeito de categoria. E esses efeitos podem ser ativados de 3 formas:<br/>
+  • <span style="color: #ff8800;">Match</span>: Quando o usuário realiza uma combinação ou em sequência de combo, no match uma pedra de efeito é combinada com outras pedras do mesmo tipo, isso encadeia na ativação do efeito;<br/>
+  • <span style="color: #ff8800;">Onda de efeito</span>: Quando a pedra especial é atingida por efeito de outra pedra especial, encadeando em sua ativação; <br/>
+  • <span style="color: #ff8800;">Ativação individual</span>: Isso pode ser totalmente configurado, tanto pode deixar inativo sem que a pedra especial tenha esse recurso quanto tem como
+  definir que caso o usuário click duas vezes em cima da pedra especial, ela será ativada (exemplo). Nesse caso, há um fluxo totalmente especifico para isso. 
+</h3>
+
+<h3>
+  Imports
+</h3>
+<div class="codeBoard">
+  <div id="copySucess">Copiado com sucesso! <div id="closeNotification" onclick="clearNotification()">x</div></div>
+  <div
+      onclick="clipBoardEffect(`import { activeEffects } from 'mpuzzlesye'`, 'clipBoardmpuzzleSye17')"
+      class="clipboardSVG"
+      id="clipBoardmpuzzleSye17"
+      alt="copiar"
+  ></div>
+  <div class="codeLine">
+      <div class="simbol">$</div>
+      <div class="codeScope">
+          <div>import { activeEffects } from 'mpuzzlesye'</div>
+      </div>
+  </div>
+</div>
+
+<h3>
+  Definindo ação<br/>
+  Precisamos entregar qual foi a pedra clicada e sua posição, assim como as outras definições configuradas. 
+</h3>
+<div class="codeBoard">
+  <div id="copySucess">Copiado com sucesso! <div id="closeNotification" onclick="clearNotification()">x</div></div>
+  <div
+      onclick="clipBoardEffect(`const moveAction = { row: 3, column: 5, stone: { id: 2, type: 'light', category: 'pattern_four' } }\r\nconst effectReact = await activeEffects({ table, activeCategorys , ...moveAction })`, 'clipBoardmpuzzleSye18')"
+      class="clipboardSVG"
+      id="clipBoardmpuzzleSye18"
+      alt="copiar"
+  ></div>
+  <div class="codeLine">
+      <div class="simbol">$</div>
+      <div class="codeScope">
+          <div>const moveAction = { row: 3, column: 5, stone: { id: 2, type: 'light', category: 'pattern_four' } }</div>
+      </div>
+  </div>
+  <div class="codeLine">
+      <div class="simbol">$</div>
+      <div class="codeScope">
+          <div>const effectReact = await activeEffects({ table, activeCategorys , ...moveAction })</div>
+      </div>
+  </div>
+</div>
+
+
+<h3>
+  Efeito de Onda<br/>
+  Após a ativação, as pedras que forem afetadas pelo efeito podem ser especiais também, desencadeando o efeito de onda. <br/>
+  Daqui por diante, o fluxo é o mesmo utilizado no STS.
+</h3>
+<div class="codeBoard">
+  <div id="copySucess">Copiado com sucesso! <div id="closeNotification" onclick="clearNotification()">x</div></div>
+  <div
+      onclick="clipBoardEffect(`const sequence = await sequenceHistory({ sequenceInitial: effectReact, table, effects: activeCategorys })`, 'clipBoardmpuzzleSye19')"
+      class="clipboardSVG"
+      id="clipBoardmpuzzleSye19"
+      alt="copiar"
+  ></div>
+  <div class="codeLine">
+      <div class="simbol">$</div>
+      <div class="codeScope">
+          <div>const sequence = await sequenceHistory({ sequenceInitial: effectReact, table, effects: activeCategorys })</div>
+      </div>
+  </div>
+</div>

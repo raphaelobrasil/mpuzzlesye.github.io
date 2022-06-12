@@ -15,6 +15,7 @@
 }
 
 .content .codeBoard .codeLine .codeScope {  
+  max-width: 85%;
   font-family: 'Nunito', sans-serif;
   font-style: italic;
 }
