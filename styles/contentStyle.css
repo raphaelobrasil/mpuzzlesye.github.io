@@ -3,6 +3,7 @@
   justify-content: space-between;
   align-items: center;
   height: 30px;
+  column-gap: 24px;
 
   background-color: #344245;
   color: #eff9fa;
@@ -25,12 +26,19 @@
 
 .header .searchBoard {
   display: flex;
+  justify-content: space-between;
   background-color: #f9fafa;
+  max-width: 60%;
   width: 60%;
   border-radius: 8px;
 }
 
-.header .searchBoard .searchIcon {
+.header .searchBoard .searchbtnIcon {
+  height: 24px;
+  position: relative;
+}
+
+.header .searchBoard .searchbtnIcon .searchIcon {
   background-color: #344245;
   width: 24px;
   height: 24px;
@@ -38,8 +46,35 @@
   mask: url(./../svg/search.svg) no-repeat center;
 }
 
+.header .searchBoard .searchbtnIcon span {
+  display: flex;
+  justify-content: center;
+  width: 24px;
+  height: 19.5px;
+
+  padding-top: 4px;
+  border-radius: 45%;
+  border: 2px solid #344245;
+
+  color: #344245;
+  font-family: 'Nunito', sans-serif;
+  
+  position: absolute;
+  right: -2px;
+  top: -1.5px;
+
+  cursor: pointer;
+  user-select: none;
+}
+
+.header .searchBoard .searchbtnIcon span:hover {
+  background-color: #344245;
+  border: 2px solid #ff8800;
+  color: #ff8800;
+} 
+
 .header .searchBoard .searchInput {
-  width: calc(100% - 24px);
+  width: calc(100% - 68px);
   background-color: #f9fafa;
   padding: 0px 24px;
   border: none;
@@ -205,8 +240,8 @@
 .content .menuBoard .optionMenuBoard span {
   position: absolute;
   user-select: none;
-  left: -6px;
-  bottom: -20px;
+  bottom: -32px;
+  text-align: center;
   font-size: 28px;
   cursor: pointer;
 }
@@ -214,14 +249,16 @@
 .NoFound {
   display: none;
   flex-direction: column;
+  align-items: center;
+  row-gap: 24px;
   padding: 200px;
 }
 
 .NoFound span {
   font-size: 24px;
   color:#ff8800;
-  margin: 25px calc(45% - 100px);
   white-space: nowrap;
+  user-select: none;
 }
 
 .NoFound .NoFoundSVG {
@@ -230,6 +267,4 @@
   height: 125px;
   -webkit-mask: url(./../svg/noFound.svg) no-repeat center;
   mask: url(./../svg/noFound.svg) no-repeat center;
-
-  margin: 0 calc(50% - 100px);
 }
