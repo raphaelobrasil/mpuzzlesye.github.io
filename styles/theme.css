@@ -13,7 +13,24 @@
   --color-menu: #37464f;
   --shadow-main: #555757;
 
+  --space-xsmall: 2px;
+  --space-small: 6px;
+  --space-medium: 12px;
+  --space-large: 24px;
+  --space-xlarge: 48px;
+
+  --fontsize-xsmall: 10px;
+  --fontsize-small: 12px;
+  --fontsize-medium: 14px;
+  --fontsize-large: 16px;
+  --fontsize-xlarge: 24px;
+
   --font-main: Georgia, serif;
   --font-code: 'Nunito', sans-serif;
   --font-simbol-sudo: 'Lato', sans-serif;
+
+  --breakpoint-small: 600px;
+  --breakpoint-medium: 768px;
+  --breakpoint-large: 992px;
+  --breakpoint-xlarge: 1200px;
 }
