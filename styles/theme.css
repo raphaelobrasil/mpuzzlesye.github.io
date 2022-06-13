@@ -1,0 +1,19 @@
+:root {
+  --bg-main-light: #FFF;
+  --bg-main: #f9fafa;
+  --bg-second: #eff9fa;
+  --bg-board: #edefef;
+  --bg-board-light: #f1f2f2;
+  --bg-sucess: #3ab816;
+  --bg-danger: #e82e2e;
+  --color-main: #344245;
+  --color-main-light: #cccccc;
+  --color-main-dark: #5c5c5c;
+  --color-second: #ff8800;
+  --color-menu: #37464f;
+  --shadow-main: #555757;
+
+  --font-main: Georgia, serif;
+  --font-code: 'Nunito', sans-serif;
+  --font-simbol-sudo: 'Lato', sans-serif;
+}
