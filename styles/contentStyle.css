@@ -27,6 +27,8 @@
   -webkit-mask: url(./../svg/kebab.svg) no-repeat center;
   mask: url(./../svg/kebab.svg) no-repeat center;
   cursor: pointer;
+  
+  transition-duration: 0.3s;
 }
 
 .header .kebab:hover {
@@ -74,6 +76,8 @@
 
   cursor: pointer;
   user-select: none;
+  
+  transition-duration: 0.3s;
 }
 
 .header .searchBoard .searchbtnIcon span:hover {
@@ -94,6 +98,8 @@
 .header .nameLib {
   cursor: pointer;
   user-select: none;
+  
+  transition-duration: 0.3s;
 }
 
 .header .nameLib:hover {
@@ -220,6 +226,8 @@
   padding: 24px;
   background-color: var(--color-main);
   cursor: pointer;
+  
+  transition-duration: 0.4s;
 }
 
 .content .menuBoard .tutorialBoardSVG {
@@ -244,6 +252,8 @@
   border: 3px solid var(--color-main);
   color: var(--color-main);
   position: relative;
+  
+  transition-duration: 0.4s;
 }
 
 .content .menuBoard .optionMenuBoard span {
@@ -252,7 +262,7 @@
   bottom: -32px;
   text-align: center;
   font-size: 28px;
-  cursor: pointer;
+  cursor: pointer;  
 }
 
 .NoFound {
@@ -268,6 +278,7 @@
   color: var(--color-second);
   white-space: nowrap;
   user-select: none;
+  
 }
 
 .NoFound .NoFoundSVG {

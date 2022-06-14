@@ -36,6 +36,9 @@
   -webkit-mask: url(./../svg/clipboard.svg) no-repeat center;
   mask: url(./../svg/clipboard.svg) no-repeat center;
   cursor: pointer;
+
+  
+  transition-duration: 0.3s;
 }
 
 .content .codeBoard .clipboardSVG:hover {
@@ -82,6 +85,8 @@
   right: -10px;
 
   cursor: pointer;
+  
+  transition-duration: 0.3s;
 }
 
 .content .codeBoard #copySucess #closeNotification:hover {
