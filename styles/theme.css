@@ -21,9 +21,13 @@
 
   --fontsize-xsmall: 10px;
   --fontsize-small: 12px;
-  --fontsize-medium: 14px;
-  --fontsize-large: 16px;
+  --fontsize-medium: 16px;
+  --fontsize-large: 18px;
   --fontsize-xlarge: 24px;
+
+  --animation-duration-medium: 0.3s;
+
+  --svg-size-medium: 24px;
 
   --font-main: 'Roboto', sans-serif;
   --font-code: 'Cambay', sans-serif;

@@ -12,9 +12,7 @@ const anchorLink = () => {
   if (!!get) {
     try {
       const attrac = document.querySelector(`[attrac^="${get}"]`)
-      attrac.scrollIntoView({
-        behavior: 'smooth'
-      })
+      attrac.scrollIntoView({ behavior: 'smooth' })
       attrac.style.backgroundColor = "red"
     } catch {}
   }
