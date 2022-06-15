@@ -32,6 +32,7 @@ const changeContent = (page) => {
           const json = await options.json
           options.page === page && options.call(json) 
         }
+        anchorLink()
       }
       if (this.status == 404) { 
         content.innerHTML = `<div class="NoFound"><div class="NoFoundSVG" alt="noFound"></div><span>Page not found!</span></div>` 
