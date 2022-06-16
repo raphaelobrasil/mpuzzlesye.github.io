@@ -1,74 +1,41 @@
-.content .codeBoard {
+.codeBoard {
   display: flex;
   flex-direction: column;
   width: calc(100% - 72px);
   background-color: var(--bg-board);
-  border-radius: 4px;
-  padding: 12px;
-  margin-left: 24px;
-  position: relative;
+
+  border-radius: var(--border-radius-medium);
+  padding: var(--space-medium);
+  margin-left: var(--space-large);
   color: var(--color-main);
+
+  position: relative;
 }
 
-.content .codeBoard .codeLine {
-  display: flex;
-}
-
-.content .codeBoard .codeLine .codeScope {  
+.codeScope {  
   max-width: 85%;
   font-family: var(--font-code);
   font-style: italic;
 }
 
-.content .codeBoard .simbol {
+.simbol {
   user-select: none;
   font-family: var(--font-simbol-sudo);
-  padding: 0px 12px;
+  padding: 0px var(--space-medium);
 }
 
-.content .codeBoard .clipboardSVG {
-  width: 24px;
-  height: 24px;
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  background-color: var(--color-main);
-  -webkit-mask: url(./../svg/clipboard.svg) no-repeat center;
-  mask: url(./../svg/clipboard.svg) no-repeat center;
-  cursor: pointer;
-
-  
-  transition-duration: 0.3s;
-}
-
-.content .codeBoard .clipboardSVG:hover {
-  background-color: var(--color-second);
-}
-
-.content .codeBoard .clipboardSuccessSVG {
-  width: 24px;
-  height: 24px;
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  background-color: var(--color-second);
-  -webkit-mask: url(./../svg/clipboardSuccess.svg) no-repeat center;
-  mask: url(./../svg/clipboardSuccess.svg) no-repeat center;
-  cursor: pointer;
-}
-
-.content .codeBoard #copySucess {
+#copySucess {
   display: none;
   position: absolute;
   background-color: var(--bg-sucess);
   color: var(--bg-main);
-  padding: 8px;
-  border-radius: 4px;
+  padding: var(--space-xsmall);
+  border-radius: Var(--border-radius-medium);
   top: -48px;
   left: calc(50% - 36px);
 }
 
-.content .codeBoard #copySucess #closeNotification {
+#closeNotification {
   display: flex;
   justify-content: center;
   width: 20px;
@@ -76,7 +43,7 @@
   background-color: var(--bg-danger);
 
   border: 1px solid transparent;
-  border-radius: 50%;
+  border-radius: var(--border-radius-circle);
   color: var(--bg-main);
   font-family: var(--font-code);
 
@@ -86,10 +53,10 @@
 
   cursor: pointer;
   
-  transition-duration: 0.3s;
+  transition-duration: var(--animation-duration-medium);
 }
 
-.content .codeBoard #copySucess #closeNotification:hover {
+#closeNotification:hover {
   color: var(--color-main);
   border: 1px solid var(--color-main);
 }

@@ -32,6 +32,7 @@ const changeContent = (page) => {
           const json = await options.json
           options.page === page && options.call(json) 
         }
+        anchorLink()
       }
       if (this.status == 404) { 
         content.innerHTML = `<div class="NoFound"><div class="NoFoundSVG" alt="noFound"></div><span>Page not found!</span></div>` 
@@ -47,35 +48,36 @@ const changeContent = (page) => {
 const clipBoardEffect = (value, id) => {
   const content = document.querySelector(`#${id}`)
   const sucessCopy = document.querySelector('#copySucess')
-  content.className = "clipboardSuccessSVG"
+  content.setAttribute('clip', 'yes')
   navigator.clipboard.writeText(value)
   sucessCopy.style.display = 'block'
 }
 
 const clearNotification = () => {
-  const content = document.querySelectorAll(`.clipboardSuccessSVG`)
+  const content = document.querySelectorAll(`[clip]`)
   const sucessCopy = document.querySelector('#copySucess')
   sucessCopy.style.display = 'none'
-  content.forEach(node => node.className = "clipboardSVG")
+  content.forEach(node => node.setAttribute('clip', 'no'))
 
+}
+
+const effectHover = (border, svg, border_c, border_bg, svg_bg) => {
+  border.style.border = `3px solid ${border_c}`;
+  border.style.color = border_c;
+  border.style.backgroundColor = border_bg;
+  svg.style.backgroundColor = svg_bg;
 }
 
 const putHover = (type) => {
-  const border = document.querySelector(`.hover${type}`)
-  const svgIcon = document.querySelector(`.${type}BoardSVG`)
-  border.style.border = '3px solid #ff8800';
-  border.style.color = '#ff8800';
-  border.style.backgroundColor = '#344245';
-  svgIcon.style.backgroundColor = '#ff8800';
-
+  const border = document.querySelector(`[border-${type}]`)
+  const svgIcon = document.querySelector(`.${type}`)
+  effectHover(border, svgIcon, color_second, color_main, color_second)
 }
+
 const outHover = (type) => {
-  const border = document.querySelector(`.hover${type}`)
-  const svgIcon = document.querySelector(`.${type}BoardSVG`)
-  border.style.border = '3px solid #344245';
-  border.style.color = '#344245';
-  border.style.backgroundColor = 'unset';
-  svgIcon.style.backgroundColor = '#344245';
+  const border = document.querySelector(`[border-${type}]`)
+  const svgIcon = document.querySelector(`.${type}`)
+  effectHover(border, svgIcon, color_main, 'unset', color_main)
 }
 
 

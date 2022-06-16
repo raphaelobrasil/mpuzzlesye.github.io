@@ -1,6 +1,6 @@
 {
-  "subtitleH3": "Para melhor entendimento de uso das funções, segue a lista de tipagens necessárias para o uso básico dos métodos existentes. ",
-  "dica": "Há interfaces com propriedades repetidas e algumas faltando fatoração. Eventualmente irei corrigir esses pontos, assim como as propriedades com nomenclaturas diferentes que representam a mesma coisa. Após resolver esses pontos, pretendo trazer mais um quadro nesta página, que será responsável por definir o que cada propriedade representa.",
+  "subtitle": "Para melhor entendimento de uso das funções, segue a lista de tipagens necessárias para o uso básico dos métodos existentes. ",
+  "tip": "Há interfaces com propriedades repetidas e algumas faltando fatoração. Eventualmente irei corrigir esses pontos, assim como as propriedades com nomenclaturas diferentes que representam a mesma coisa. Após resolver esses pontos, pretendo trazer mais um quadro nesta página, que será responsável por definir o que cada propriedade representa.",
   "PuzzleTables": [
     {
       "title": "IBasicTable",

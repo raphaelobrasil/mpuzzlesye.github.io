@@ -11,23 +11,40 @@
   --color-main-dark: #5c5c5c;
   --color-second: #ff8800;
   --color-menu: #37464f;
+  --color-dark: #000;
   --shadow-main: #555757;
 
-  --space-xsmall: 2px;
-  --space-small: 6px;
+  --space-xsmall: 4px;
+  --space-small: 8px;
   --space-medium: 12px;
+  --space-slarge: 18px;
   --space-large: 24px;
   --space-xlarge: 48px;
 
-  --fontsize-xsmall: 10px;
-  --fontsize-small: 12px;
-  --fontsize-medium: 14px;
-  --fontsize-large: 16px;
-  --fontsize-xlarge: 24px;
+  --fontsize-xsmall: 12px;
+  --fontsize-small: 14px;
+  --fontsize-medium: 16px;
+  --fontsize-slarge: 18px;
+  --fontsize-large: 24px;
+  --fontsize-elarge: 28px;
+  --fontsize-xlarge: 32px;
+
+  --animation-duration-medium: 0.3s;
+  --animation-duration-slong: 0.4s;
+
+  --svg-size-medium: 24px;
+  --svg-size-xlarge: 48px;
 
   --font-main: 'Roboto', sans-serif;
   --font-code: 'Cambay', sans-serif;
   --font-simbol-sudo: 'Lato', sans-serif;
+
+  --border-radius-small: 3px;
+  --border-radius-medium: 4px;
+  --border-radius-large: 8px;
+  --border-radius-xlarge: 50px;
+  --border-radius-semi-circle: 45%;
+  --border-radius-circle: 50%;
 
   --breakpoint-small: 37.5em;
   --breakpoint-medium: 48em;

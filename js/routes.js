@@ -4,7 +4,18 @@ const getParams = (params) => new URLSearchParams( window.location.search ).get(
 const initPage = () => {
   const page = getParams('page') || 'home'
   changeContent(page)
-  renderMenu()        
+  renderMenu()    
+}
+
+const anchorLink = () => {
+  const get = getParams('attrac')
+  if (!!get) {
+    try {
+      const attrac = document.querySelector(`[attrac^="${get}"]`)
+      attrac.scrollIntoView({ behavior: 'smooth' })
+      attrac.style.backgroundColor = "red"
+    } catch {}
+  }
 }
 
 // ?first=value&&second=value

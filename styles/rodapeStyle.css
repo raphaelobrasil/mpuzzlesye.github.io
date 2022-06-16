@@ -1,60 +1,14 @@
 .rodape {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  row-gap: 12px;
   width: 100%;
   min-height: 100px;
   background-color: var(--color-main);
-  padding: 12px 0px;
+  padding: var(--space-medium) 0px;
   border-top: 1px solid var(--color-menu);
 }
 
-.rodape .rodapeTitle {
-  font-size: 22px;
+.rodape div {
   color: var(--bg-second);
+  font-size: var(--fontsize-small);
   text-align: center;
   user-select: none;
-}
-
-.rodape .assign {
-  font-size: 14px;
-  color: var(--bg-second);
-  text-align: center;
-  user-select: none;
-}
-
-.rodape .rodapeSVG {
-  display: flex;
-  justify-content: center;
-  column-gap: 12px;
-  
-}
-
-.rodape .rodapeSVG .githubSVG {
-  background-color: var(--bg-second);
-  width: 24px;
-  height: 24px;
-  -webkit-mask: url(./../svg/github.svg) no-repeat center;
-  mask: url(./../svg/github.svg) no-repeat center;
-  cursor: pointer;
-  transition-duration: 0.3s;
-}
-
-.rodape .rodapeSVG .linkedinSVG {
-  background-color: var(--bg-second);
-  width: 24px;
-  height: 24px;
-  -webkit-mask: url(./../svg/linkedin.svg) no-repeat center;
-  mask: url(./../svg/linkedin.svg) no-repeat center;
-  cursor: pointer;
-  transition-duration: 0.3s;
-}
-
-.rodape .rodapeSVG .githubSVG:hover {
-  background-color: var(--color-second);
-}
-
-.rodape .rodapeSVG .linkedinSVG:hover {
-  background-color: var(--color-second);
 }

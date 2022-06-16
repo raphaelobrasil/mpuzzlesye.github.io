@@ -9,6 +9,9 @@
   <link rel="stylesheet" href="./styles/rodapeStyle.css">
   <link rel="stylesheet" href="./styles/codeBoard.css">
   <link rel="stylesheet" href="./styles/search.css">
+  <link rel="stylesheet" href="./styles/svg.styles.css">
+  <link rel="stylesheet" href="./styles/attributes.styles.css">
+  <script src="./js/theme.js"></script>
   <script src="./js/menu.js"></script>
   <script src="./js/render.js"></script>
   <script src="./js/content.js"></script>
@@ -18,9 +21,10 @@
 </head>
 <body>
     <div class="view">
-      <div class="menu">
-        <div class="logoMenu">
+      <div d-none flexc class="menu">
+        <div flexr-end>
           <div
+            svg
             onclick={closeMenu()}
             class="closeMenu"
             alt="fechar menu"
@@ -31,8 +35,9 @@
         </div>
       </div>
       <div class="content">
-        <div class="header">
+        <div flexr-sb-c gap-c-m class="header">
           <div
+            svg
             class="kebab"
             onclick={openMenu()}
             alt="abrir menu"
@@ -49,27 +54,29 @@
             Match Puzzle System Engine V. 1.6.7
           </div>  
         </div>
-        <div class="contentSearch"></div>
+        <div d-none flexc class="contentSearch"></div>
         <div class="contentPage"></div>
       </div>
     </div>
-    <div class="rodape">
-      <div class="rodapeTitle">Match Puzzle System Engine</div>
-      <div class="rodapeSVG">
+    <div flexc-center gap-r-m class="rodape">
+      <div>Match Puzzle System Engine</div>
+      <div flexr-center gap-c-m>
         <a href="https://github.com/raphaelobrasil/MPuzzleSyE" target="_blank">
           <div
-          class="githubSVG"
-          alt="github"
+            svg
+            class="github"
+            alt="github"
           ></div>
         </a>
         <a href="https://www.linkedin.com/in/raphael-brasil/" target="_blank">
           <div
-          class="linkedinSVG"
-          alt="linkedin"
+            svg
+            class="linkedin"
+            alt="linkedin"
           ></div>
         </a>
       </div>
-      <div class="assign">
+      <div>
         <p>Raphael Brasil</p>
         <p>2022</p>
       </div>
