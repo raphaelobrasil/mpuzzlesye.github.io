@@ -71,13 +71,13 @@ const effectHover = (border, svg, border_c, border_bg, svg_bg) => {
 const putHover = (type) => {
   const border = document.querySelector(`[border-${type}]`)
   const svgIcon = document.querySelector(`.${type}`)
-  effectHover(border, svgIcon, '#ff8800', '#344245', '#ff8800')
+  effectHover(border, svgIcon, color_second, color_main, color_second)
 }
 
 const outHover = (type) => {
   const border = document.querySelector(`[border-${type}]`)
   const svgIcon = document.querySelector(`.${type}`)
-  effectHover(border, svgIcon, '#344245', 'unset', '#344245')
+  effectHover(border, svgIcon, color_main, 'unset', color_main)
 }
 
 
