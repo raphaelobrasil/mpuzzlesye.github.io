@@ -1,43 +1,71 @@
-.content .contentSearch {
-  display: none;
-  flex-direction: column;
+.contentSearch {
   width: 100%;
   min-height: calc(100% - 54px);
   background-color: var(--bg-second);
-  padding-bottom: 24px;
+  padding-bottom: var(--space-large);
   position: absolute;
   z-index: 1;
 }
 
-.content .contentSearch h1 {
-  width: 50%;
-  height: fit-content;
-  padding-left: 24px;
-  margin-bottom: 0px;
-  border-bottom: 1px solid var(--color-main);
-  color: var(--color-main);
+.searchBoard {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--bg-main);
+  max-width: 60%;
+  width: 60%;
+  border-radius: var(--border-radius-large);
 }
 
-.content .contentSearch h2 {
-  max-width: 50%;
-  margin: 18px 0px; 
-  padding: 0px 24px 0px 24px;
-  color: var(--color-main);
+.searchbtnIcon {
+  height: 24px;
+  position: relative;
 }
 
-.content .contentSearch h3 {
-  margin: 0px;
-}
-
-.content .contentSearch .searchLoading {
+.searchbtnIcon span {
   display: flex;
   justify-content: center;
-  height: 46px;
-  padding-top: 12px;
-  visibility: visible;
+  width: 24px;
+  height: 19.5px;
+
+  padding-top: var(--space-xsmall);
+  border-radius: var(--border-radius-semi-circle);
+  border: 2px solid var(--color-main);
+
+  color: var(--color-main);
+  font-family: var(--font-code);
+  
+  position: absolute;
+  right: -2px;
+  top: -1.5px;
+
+  cursor: pointer;
+  user-select: none;
+  
+  transition-duration: var(--animation-duration-medium);
 }
 
-.InterSearchPuzzle, .InterSearchModules, .InterSearchMatch3, .functSearchPuzzle, .functSearchModules, .functSearchMatch3, .functSearchGachaSystem {
+.searchbtnIcon span:hover {
+  background-color: var(--color-main);
+  border: 2px solid  var(--color-second);
+  color:  var(--color-second);
+} 
+
+.searchInput {
+  width: calc(100% - 68px);
+  background-color: var(--bg-main);
+  padding: 0px var(--space-large);
+  border-radius: var(--border-radius-large);
+  border: none;
+  outline: none;
+}
+
+.InterSearchPuzzle, 
+.InterSearchModules, 
+.InterSearchMatch3, 
+.functSearchPuzzle, 
+.functSearchModules, 
+.functSearchMatch3, 
+.functSearchGachaSystem {
   display: none;
 }
 

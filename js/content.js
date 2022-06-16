@@ -61,22 +61,23 @@ const clearNotification = () => {
 
 }
 
-const putHover = (type) => {
-  const border = document.querySelector(`.hover${type}`)
-  const svgIcon = document.querySelector(`.${type}BoardSVG`)
-  border.style.border = '3px solid #ff8800';
-  border.style.color = '#ff8800';
-  border.style.backgroundColor = '#344245';
-  svgIcon.style.backgroundColor = '#ff8800';
-
+const effectHover = (border, svg, border_c, border_bg, svg_bg) => {
+  border.style.border = `3px solid ${border_c}`;
+  border.style.color = border_c;
+  border.style.backgroundColor = border_bg;
+  svg.style.backgroundColor = svg_bg;
 }
+
+const putHover = (type) => {
+  const border = document.querySelector(`[border-${type}]`)
+  const svgIcon = document.querySelector(`.${type}`)
+  effectHover(border, svgIcon, '#ff8800', '#344245', '#ff8800')
+}
+
 const outHover = (type) => {
-  const border = document.querySelector(`.hover${type}`)
-  const svgIcon = document.querySelector(`.${type}BoardSVG`)
-  border.style.border = '3px solid #344245';
-  border.style.color = '#344245';
-  border.style.backgroundColor = 'unset';
-  svgIcon.style.backgroundColor = '#344245';
+  const border = document.querySelector(`[border-${type}]`)
+  const svgIcon = document.querySelector(`.${type}`)
+  effectHover(border, svgIcon, '#344245', 'unset', '#344245')
 }
 
 
