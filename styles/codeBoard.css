@@ -26,37 +26,6 @@
   padding: 0px 12px;
 }
 
-.content .codeBoard .clipboardSVG {
-  width: 24px;
-  height: 24px;
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  background-color: var(--color-main);
-  -webkit-mask: url(./../svg/clipboard.svg) no-repeat center;
-  mask: url(./../svg/clipboard.svg) no-repeat center;
-  cursor: pointer;
-
-  
-  transition-duration: 0.3s;
-}
-
-.content .codeBoard .clipboardSVG:hover {
-  background-color: var(--color-second);
-}
-
-.content .codeBoard .clipboardSuccessSVG {
-  width: 24px;
-  height: 24px;
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  background-color: var(--color-second);
-  -webkit-mask: url(./../svg/clipboardSuccess.svg) no-repeat center;
-  mask: url(./../svg/clipboardSuccess.svg) no-repeat center;
-  cursor: pointer;
-}
-
 .content .codeBoard #copySucess {
   display: none;
   position: absolute;

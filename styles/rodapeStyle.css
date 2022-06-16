@@ -1,8 +1,4 @@
 .rodape {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  row-gap: var(--space-medium);
   width: 100%;
   min-height: 100px;
   background-color: var(--color-main);
@@ -12,36 +8,7 @@
 
 .rodape div {
   color: var(--bg-second);
+  font-size: var(--fontsize-small);
   text-align: center;
   user-select: none;
-  font-size: var(--fontsize-small);
 }
-
-.rodape .rodape_svg {
-  display: flex;
-  justify-content: center;
-  column-gap: var(--space-medium);  
-}
-
-.rodape .rodape_svg div {
-  background-color: var(--bg-second);
-  width: var(--svg-size-medium);
-  height: var(--svg-size-medium);
-  cursor: pointer;
-  transition-duration: var(--animation-duration-medium);
-}
-
-.rodape .rodape_svg div:hover {
-  background-color: var(--color-second);
-}
-
-.rodape .rodape_svg .github {
-  -webkit-mask: url(./../svg/github.svg) no-repeat center;
-  mask: url(./../svg/github.svg) no-repeat center;
-}
-
-.rodape .rodape_svg .linkedin {
-  -webkit-mask: url(./../svg/linkedin.svg) no-repeat center;
-  mask: url(./../svg/linkedin.svg) no-repeat center;
-}
-

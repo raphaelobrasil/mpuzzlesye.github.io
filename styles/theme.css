@@ -38,3 +38,78 @@
   --breakpoint-large: 62em;
   --breakpoint-xlarge: 75em;
 }
+
+[flexr] { 
+  display: flex; 
+}
+[flexr-center] { 
+  display: flex; 
+  justify-content: 
+  center; 
+}
+[flexr-end] { 
+  display: flex; 
+  justify-content: flex-end; 
+}
+[flexr-sb-c] { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+}
+
+[flexc] { 
+  display: attr(flex); 
+  flex-direction: column; 
+}
+[flexc-center] { 
+  display: flex; 
+  flex-direction: column;  
+  justify-content: center; 
+}
+
+[d-none] { 
+  display: none; 
+}
+
+[gap-c-m] { 
+  column-gap: var(--space-medium); 
+}
+[gap-r-m] { 
+  row-gap: var(--space-medium); 
+}
+
+[noSelect] { 
+  user-select: none; 
+}
+
+
+[svg] {
+  background-color: var(--bg-second);
+  width: var(--svg-size-medium);
+  height: var(--svg-size-medium);
+  cursor: pointer;
+  transition-duration: var(--animation-duration-medium);
+}
+
+[clip] {
+  position: absolute;
+  top: var(--space-medium);
+  right: var(--space-medium);
+}
+
+[clip="no"] {
+  -webkit-mask: url(./../svg/clipboard.svg) no-repeat center;
+  mask: url(./../svg/clipboard.svg) no-repeat center;
+  background-color: var(--color-main); 
+}
+
+[clip="yes"] {
+  -webkit-mask: url(./../svg/clipboardSuccess.svg) no-repeat center;
+  mask: url(./../svg/clipboardSuccess.svg) no-repeat center;
+  background-color: var(--color-second);
+
+}
+
+[svg]:hover, [clip]:hover {
+  background-color: var(--color-second);
+}

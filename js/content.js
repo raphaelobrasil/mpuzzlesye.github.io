@@ -48,16 +48,16 @@ const changeContent = (page) => {
 const clipBoardEffect = (value, id) => {
   const content = document.querySelector(`#${id}`)
   const sucessCopy = document.querySelector('#copySucess')
-  content.className = "clipboardSuccessSVG"
+  content.setAttribute('clip', 'yes')
   navigator.clipboard.writeText(value)
   sucessCopy.style.display = 'block'
 }
 
 const clearNotification = () => {
-  const content = document.querySelectorAll(`.clipboardSuccessSVG`)
+  const content = document.querySelectorAll(`[clip]`)
   const sucessCopy = document.querySelector('#copySucess')
   sucessCopy.style.display = 'none'
-  content.forEach(node => node.className = "clipboardSVG")
+  content.forEach(node => node.setAttribute('clip', 'no'))
 
 }
 
