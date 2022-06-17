@@ -43,10 +43,10 @@ const searching = (interface, functions, value) => {
     document.querySelector('.functSearchPuzzle').style.display = 'unset', listFunctions('ModulesfunctSearch', functModules, '', '')
   )
   !!functMethods[0] && (
-    document.querySelector('.functSearchMethods').style.display = 'unset', listFunctions('MethodsfunctSearch', functMatch, '', '')
+    document.querySelector('.functSearchMethods').style.display = 'unset', listFunctions('MethodsfunctSearch', functMethods, '', '')
   )
   !!functfHelps[0] && (
-    document.querySelector('.functSearchfHelps').style.display = 'unset', listFunctions('fHelpsfunctSearch', functMatch, '', '')
+    document.querySelector('.functSearchfHelps').style.display = 'unset', listFunctions('fHelpsfunctSearch', functfHelps, '', '')
   )
   !!functGacha[0] && (
     document.querySelector('.functSearchGachaSystem').style.display = 'unset', listFunctions('GachaSystemfunctSearch', functGacha, '', '')

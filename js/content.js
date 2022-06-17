@@ -8,7 +8,7 @@ const changeContent = (page='home', topic) => {
         content.innerHTML = `<div class='${page}Class' >${this.responseText}</div>`
         for await (const option of options) { 
           const json = await option.json
-          option.file === page && option.call(json) 
+          option.file === page && option.call(json, page, topic) 
         }
         anchorLink()
         setUrlBord(page)

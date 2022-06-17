@@ -33,10 +33,10 @@ const options = [
   },
   {
     ...formatOption('interface', 'Interface'),
-    call: (json) => renderPageInterface(json),
+    call: (json, page, topic) => renderPageInterface(json, page, topic),
     json: jsonInterface,
     topic: [
-      formatOption('puzzleTable', 'PuzzleTable'),
+      formatOption('puzzleTable', 'PuzzleTables'),
       formatOption('modules', 'Modules'),
       formatOption('methods', 'Methods'),
       formatOption('fhelps', 'fHelps')

@@ -1,8 +1,9 @@
-const renderPageInterface = ({PuzzleTables, Modules, Methods, fHelps, subtitle, tip}) => { 
-  listInterface('PuzzleTables', PuzzleTables, subtitle, tip)
-  listInterface('Modules', Modules, subtitle, tip)
-  listInterface('Methods', Methods, subtitle, tip)
-  listInterface('fHelps', fHelps, subtitle, tip)
+const renderPageInterface = (json, page, urlTopic) => { 
+  for (const { file, topic } of options) {
+    page === file && topic.forEach(menu => {
+      urlTopic === menu.file && listInterface('interfaceContent', json[menu.label], json.subtitle, json.tip)
+    })
+  }
 }
 
 const renderPageFunctions = ({PuzzleTables, Modules, GachaSystem, Methods, fHelps, subtitle, tip}) => { 
@@ -19,7 +20,7 @@ const attracInfo = (info) =>  info
 .replace('&#62;', '')
 .replace('&#60;', '')
 
-const listInterface = (category, list, subtitle, tip) => {
+const listInterface = (category, list, subtitle, tip) => {  
   const content = document.querySelector(`#${category}`)
   if (!!content) {
     const [init] = content.children
