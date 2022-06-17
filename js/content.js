@@ -1,38 +1,17 @@
-const getJsonInfo = async (fileJson) => {
-  const json = await fetch(`./pages/${fileJson}/${fileJson}.json`)
-    .then(response => response.json())
-    .catch(err => {
-    console.log('Não foi possível carregar Json, error:', err)
-    return null
-  })
-  return json
-}
-
-const jsonInterface = getJsonInfo('interface').then(response => response)
-const jsonFunctions = getJsonInfo('functions').then(response => response)
-
-
-const options = ['home', 'tutorial', 'interface', 'functions', 'reform']
-const callPageJson = [
-  {'page': 'home', 'call': (_json) => null, "json": {}}, 
-  {'page': 'tutorial', 'call': (_json) => null, "json": {}}, 
-  {'page':'reform', 'call': (_json) => null, "json": {}},
-  {'page':'interface', 'call': (json) => renderPageInterface(json), "json": jsonInterface}, 
-  {'page':'functions', 'call': (json) => renderPageFunctions(json), "json": jsonFunctions},
-]
-
-const changeContent = (page) => {
+const changeContent = (page='home', topic) => {
   const content = document.querySelector('.contentPage')
   const xhttp = new XMLHttpRequest()
+  const url='./pages/'
   xhttp.onreadystatechange = async function() {
     if (this.readyState == 4) {
       if (this.status == 200) { 
         content.innerHTML = `<div class='${page}Class' >${this.responseText}</div>`
-        for (const options of callPageJson) { 
-          const json = await options.json
-          options.page === page && options.call(json) 
+        for (const option of options) { 
+          const json = await option.json
+          option.file === page && option.call(json) 
         }
         anchorLink()
+        setUrlBord(page)
       }
       if (this.status == 404) { 
         content.innerHTML = `<div class="NoFound"><div class="NoFoundSVG" alt="noFound"></div><span>Page not found!</span></div>` 
@@ -40,7 +19,7 @@ const changeContent = (page) => {
       }
     }
   }
-  xhttp.open("GET", `./pages/${page}`, true)
+  xhttp.open("GET", `${url}${!!topic ? `${page}/${topic}` : page}`, true)
   xhttp.send()
 }
 
@@ -80,4 +59,12 @@ const outHover = (type) => {
   effectHover(border, svgIcon, color_main, 'unset', color_main)
 }
 
-
+const setUrlBord = (page='home') => {
+  if (page==='home') {
+    for (const option of options) {
+      const content = document.querySelector(`#urlBoard${option.file}`)
+      const [topic] = option.topic
+      !!content && content.setAttribute('href', `?page=${option.file}${option.file !== 'reform' ? '&&topic=' + topic.file : ''}`)
+    }
+  }
+}

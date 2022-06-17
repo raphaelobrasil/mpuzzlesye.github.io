@@ -6,6 +6,10 @@
   -webkit-mask: url(./../svg/linkedin.svg) no-repeat center;
   mask: url(./../svg/linkedin.svg) no-repeat center;
 }
+.arrow {
+  -webkit-mask: url(./../svg/arrow.svg) no-repeat center;
+  mask: url(./../svg/arrow.svg) no-repeat center;
+}
 .closeMenu {
   -webkit-mask: url(./../svg/arrow.svg) no-repeat center;
   mask: url(./../svg/arrow.svg) no-repeat center;

@@ -1,7 +1,7 @@
 .contentSearch {
   width: 100%;
   min-height: calc(100% - 54px);
-  background-color: var(--bg-second);
+  background-color: var(--bg-main);
   padding-bottom: var(--space-large);
   position: absolute;
   z-index: 1;

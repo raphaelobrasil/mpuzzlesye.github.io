@@ -34,3 +34,19 @@
     color: var(--color-second);
 }
 
+.optionMenu:hover div, .optionMenuActive:hover div {
+    background-color: var(--color-second);
+}
+
+.section_topic {
+    text-align: center;
+    padding: var(--space-small);
+    color: var(--bg-second);
+    border-bottom: 1px solid transparent;
+    cursor: pointer;
+}
+
+.section_topic:hover {
+    background-color: var(--color-menu);
+    color: var(--color-second);
+}

@@ -1,10 +1,13 @@
-
 const getParams = (params) => new URLSearchParams( window.location.search ).get(params)
 
 const initPage = () => {
-  const page = getParams('page') || 'home'
-  changeContent(page)
-  renderMenu()    
+  const page = getParams('page') || undefined
+  const topic = getParams('topic') || undefined
+  changeContent(page, topic)
+  renderMenu() 
+  !!page && openMenu()   
+  changePage(page)
+  changeTopic(page, topic)
 }
 
 const anchorLink = () => {
@@ -17,5 +20,3 @@ const anchorLink = () => {
     } catch {}
   }
 }
-
-// ?first=value&&second=value

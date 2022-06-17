@@ -20,6 +20,7 @@
   display: flex; 
   flex-direction: column; 
 }
+
 [flexc-center] { 
   display: flex; 
   flex-direction: column;  
@@ -167,4 +168,41 @@
   cursor: pointer;
 }
 
+[rotate="180"] {
+  transform: rotate(180deg) scale(1);
+  -webkit-transform: rotate(180deg) scale(1);
+  -moz-transform: rotate(180deg) scale(1);
+  -o-transform: rotate(180deg) scale(1);
+  -ms-transform: rotate(180deg) scale(1);
+}
 
+[rotate="270"] {
+  transform: rotate(270deg) scale(1);
+  -webkit-transform: rotate(270deg) scale(1);
+  -moz-transform: rotate(270deg) scale(1);
+  -o-transform: rotate(270deg) scale(1);
+  -ms-transform: rotate(270deg) scale(1);
+}
+
+[animation-long] {  
+  -webkit-animation: fadeIn var(--animation-duration-slong);
+  animation: fadeIn var(--animation-duration-slong);
+}
+
+[border-b-light] {
+  border-bottom: 1px solid var(--color-main-light);
+}
+
+[no-effect] {
+  text-decoration: none;
+  color: inherit;
+}
+
+@-webkit-keyframes fadeIn {
+  from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+    to { opacity: 1; }
+}
