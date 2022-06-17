@@ -1,17 +1,19 @@
-const renderPageInterface = (json, page, urlTopic) => { 
+const filterTopic = (json, page, urlTopic, call, content) => {
   for (const { file, topic } of options) {
     page === file && topic.forEach(menu => {
-      urlTopic === menu.file && listInterface('interfaceContent', json[menu.label], json.subtitle, json.tip)
+      urlTopic === menu.file && call(content, json[menu.label], json.subtitle, json.tip, menu.label, urlTopic)
     })
   }
 }
 
-const renderPageFunctions = ({PuzzleTables, Modules, GachaSystem, Methods, fHelps, subtitle, tip}) => { 
-  listFunctions('puzzleTable', PuzzleTables, subtitle, tip)
-  listFunctions('modules', Modules, subtitle, tip)
-  listFunctions('gachaSystem', GachaSystem, subtitle, tip)
-  listFunctions('methods', Methods, subtitle, tip)
-  listFunctions('fhelps', fHelps, subtitle, tip)
+const renderPageInterface = (json, page, urlTopic) => {
+  const content = 'interfaceContent'
+  filterTopic(json, page, urlTopic, listInterface, content)
+}
+
+const renderPageFunctions = (json, page, urlTopic) => {  
+  const content = 'functionsContent'
+  filterTopic(json, page, urlTopic, listFunctions, content)
 }
 
 const attracInfo = (info) =>  info
@@ -20,12 +22,13 @@ const attracInfo = (info) =>  info
 .replace('&#62;', '')
 .replace('&#60;', '')
 
-const listInterface = (category, list, subtitle, tip) => {  
+const listInterface = (category, list, subtitle, tip, topic) => {  
   const content = document.querySelector(`#${category}`)
   if (!!content) {
     const [init] = content.children
     content.innerHTML = ''
     content.appendChild(init)
+    const title = category === 'interfaceContent' ? document.querySelector("#interfaceSubTitle") : undefined
     const sub = document.querySelector(`#subtitle`)
     const tipcontent = document.querySelector(`#tip`)
 
@@ -42,22 +45,26 @@ const listInterface = (category, list, subtitle, tip) => {
       sub.innerHTML = subtitle
       tipcontent.innerHTML = tip
     }
+    if (!!title) {
+      title.innerHTML = topic
+    }
   }
 }
 
-const listFunctions = (category, list, subtitle, tip) => {
+const listFunctions = (category, list, subtitle, tip, topic, urlTopic) => {
   const content = document.querySelector(`#${category}`)
   if (!!content) {
     const [init] = content.children
     content.innerHTML = ''
     content.appendChild(init)
+    const title = category === 'functionsContent' ? document.querySelector("#functionsSubTitle") : undefined
     const sub = document.querySelector(`#subtitle`)
     const tipcontent = document.querySelector(`#tip`)
 
     for (const { functionMethod, input, output, description } of list) {
       const titleContent = (info, second) => `<div title-col="15"><strong ${second && 'title-col-second'}>${
-       second 
-       ? `<a no-effect href="?page=interface&&topic=${category}&&attrac=${attracInfo(info)}">${info}</a>`
+       (second && urlTopic !== 'gachaSystem') 
+       ? `<a no-effect pointer href="?page=interface&&topic=${urlTopic}&&attrac=${attracInfo(info)}">${info}</a>`
        : info
       }</strong></div>`
       
@@ -68,6 +75,9 @@ const listFunctions = (category, list, subtitle, tip) => {
       content.innerHTML += constructor 
       sub.innerHTML = subtitle
       tipcontent.innerHTML = tip
+    }
+    if (!!title) {
+      title.innerHTML = topic
     }
   }
 }

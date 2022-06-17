@@ -24,11 +24,12 @@ const options = [
     call: (_json) => null,
     json: {},
     topic: [
-      formatOption('tutorial', 'PuzzleTable'),
-      formatOption('tutorial', 'Modules'),
-      formatOption('tutorial', 'GachaSystem'),
-      formatOption('tutorial', 'Methods'),
-      formatOption('tutorial', 'fHelps')
+      formatOption('introduction', 'Introduction'),
+      formatOption('matchs', 'Matchs'),
+      formatOption('categoryeffects', 'Category Effects'),
+      formatOption('rebuildingtable', 'Rebuilding table'),
+      formatOption('endtoend', 'End-To-End'),
+      formatOption('tips', 'Tips')
     ]
   },
   {
@@ -44,10 +45,10 @@ const options = [
   },
   {
     ...formatOption('functions', 'Functions'),
-    call: (json) => renderPageFunctions(json),
+    call: (json, page, topic) => renderPageFunctions(json, page, topic),
     json: jsonFunctions,
     topic: [
-      formatOption('puzzleTable', 'PuzzleTable'),
+      formatOption('puzzleTable', 'PuzzleTables'),
       formatOption('modules', 'Modules'),
       formatOption('gachaSystem', 'GachaSystem'),
       formatOption('methods', 'Methods'),

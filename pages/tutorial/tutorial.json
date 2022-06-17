@@ -3,7 +3,7 @@
   "cardAlert": "<span><strong>Observação:</strong> Todas as funções do MPuzzleSyE possui carga de processamento menor que 0.02s em condições normais. Inclusive, a própria função do End-To-End cumpre esse requisito.Porém, o layout também afetará diretamente no desempenho do jogo, sugiro tomar cuidado com o uso de dados pesados em conjunto com o fluxo, quanto mais limpo for, melhor a performance. <br/><br/>A renderização do tabuleiro e todo o layout ficará seu a critério, aqui irei apenas instruir como utilizar o fluxo lógico. </span>",
   "body": [
     {
-      "menu": "Introduction",
+      "menu": "introduction",
       "content": [
         {
           "subtitle": "Método <span mark>Step-To-Step</span> (STS)",
@@ -32,7 +32,7 @@
       ]
     },
     {
-      "menu": "Matchs",
+      "menu": "matchs",
       "content": [
         {
           "titleStep": "Validando combinações",
@@ -70,7 +70,7 @@
       ]
     },
     {
-      "menu": "Category effects",
+      "menu": "categoryeffects",
       "content": [
         {
           "titleStep": "Ativando efeitos de categoria",
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "menu": "Rebuilding table",
+      "menu": "rebuildingtable",
       "content": [
         {
           "subDescription": "<span mark>No fluxo STS, os dois caminhos (com ou sem efeito) é iniciado no mesmo ponto e se cruzam novamente após o método de limpeza</span>",
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "menu": "End-To-End",
+      "menu": "endtoend",
       "content": [
         {
           "subtitle": "Método <span mark>End-To-End</span> (ETE)",
@@ -150,7 +150,7 @@
       ]
     },
     {
-      "menu": "Tips",
+      "menu": "tips",
       "content": [
         {
           "subtitle": "Considerações finais.",
