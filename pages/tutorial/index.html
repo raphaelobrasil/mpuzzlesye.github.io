@@ -1,44 +1,24 @@
 <div title>Tutorial</div>
-<div section-description> 
-    Há duas formas básicas para o uso do MPuzzleSyE. A primeira chamo de <span mark>Step-To-Step</span>, a segunda de <span mark>End-To-End</span>. <br/>
-    É importante frisar que o fluxo principal é assíncrono, portanto, durante a execução dos métodos, desenvolva sempre com a possibilidade de ter que lidar com Promises. 
+<div id="tutorial-description" section-description> 
 </div>
+
 <div class="tableContent" style="width: 95%;">
     <div class="cardContent">
         <div descript-col style="max-width: 100%;">
-            <span>
-                <strong>Observação:</strong> 
-                Todas as funções do MPuzzleSyE possui carga de processamento menor que 0.02s em condições normais. Inclusive, a própria função do End-To-End cumpre esse requisito.
-                Porém, o layout também afetará diretamente no desempenho do jogo, sugiro tomar cuidado com o uso de dados pesados em conjunto com o fluxo, quanto mais limpo for, melhor a performance. <br/><br/>
-                A renderização do tabuleiro e todo o layout ficará seu a critério, aqui irei apenas instruir como utilizar o fluxo lógico. 
-            </span>
         </div>
     </div>
 </div>
-<div title-sub>
-    Método <span mark>Step-To-Step</span> (STS)
+
+<div id="subtitle" title-sub>
 </div>
-<div section-description>
-    O fluxo <span mark>STS</span> é sem dúvida o fluxo mais flexível e leve. Com ele você pode ir executando cada etapa do processo
-    enquanto reage visualmente, a probabilidade de criar um fluxo onde o jogador sinta "a espera" é menor, em troca, há mais custo de desenvolvimento. <br/><br/>
-    Primeiro, é necessário importar as funções que serão utilizadas e configurar o tipo de conteúdo que será usado. <br/>
-    O conteúdo é a informação preenchida no tabuleiro, em default é configurado com 5 cores: 
-    <span mark>dark</span>, 
-    <span mark>light</span>, 
-    <span mark>red</span>, 
-    <span mark>blue</span> e 
-    <span mark>green</span>.<br/>
-    E aqui também definimos as categorias de efeitos, que são "conteúdo especial" que causam efeitos diversificados, por default temos as categorias <span mark>pattern_four</span> e <span mark>pattern_five</span> que são conquistados ao realizar matchs com 4 e 5 conteúdos em uma combinação, respectivamente.<br/>
-    E há o conteúdo <span mark>void</span> que define quando uma célula do tabuleiro está vazia.  <br/><br/>
-    Os conteúdos configurados no <span mark>stoneConfig</span> recebem ids enumerados a partir do 1. O id 0 é reservado para o espaço vázio, <span mark>void</span>.  
+<div id="subtitle-description" section-description>
 </div>
 <div title-sub>
-    Imports
 </div>
 <div class="codeBoard">
     <div id="copySucess">Copiado com sucesso! <div id="closeNotification" onclick="clearNotification()">x</div></div>
     <div
-        onclick="clipBoardEffect(`import { stoneConfig, gameStart, isMatch, clearMatchs, category, activeEffectsInMatchs, sequenceHistory, clearTableMatchAndEffects, organizeStructure, insertNewStones } from 'mpuzzlesye'`, 'clip-1')"
+        onclick="clipBoardEffect(``, 'clip-1')"
         svg clip="no"
         id="clip-1"
         alt="copiar"
@@ -46,7 +26,7 @@
     <div flexr>
         <div class="simbol">$</div>
         <div class="codeScope">
-            <div>import { stoneConfig, gameStart, isMatch, clearMatchs, category, activeEffectsInMatchs, sequenceHistory, clearTableMatchAndEffects, organizeStructure, insertNewStones } from 'mpuzzlesye'</div>
+            <div></div>
         </div>
     </div>
 </div>
@@ -56,7 +36,7 @@
 <div class="codeBoard">
     <div id="copySucess">Copiado com sucesso! <div id="closeNotification" onclick="clearNotification()">x</div></div>
     <div
-        onclick="clipBoardEffect('const config = stoneConfig({})', 'clip-2')"
+        onclick="clipBoardEffect('', 'clip-2')"
         svg clip="no"
         id="clip-2"
         alt="copiar"
@@ -64,7 +44,7 @@
     <div flexr>
         <div class="simbol">$</div>
         <div class="codeScope">
-            <div>const config = stoneConfig({})</div>
+            <div></div>
         </div>
     </div>
 </div>
@@ -107,6 +87,8 @@
         </div>
     </div>
 </div>
+
+
 <div title-sub>
     Validando combinações
 </div>
@@ -263,6 +245,9 @@
         </div>
     </div>
 </div>
+
+
+
 <div title-sub>
     Ativando efeitos de categoria
 </div>
@@ -326,9 +311,13 @@
 </div>
 
 
+
 <div section-description>
     <span mark>No fluxo STS, os dois caminhos (com ou sem efeito) é iniciado no mesmo ponto e se cruzam novamente após o método de limpeza</span>
 </div>
+
+
+
 <div title-sub>
     Aplicando a categoria nas pedras
 </div>
@@ -360,6 +349,7 @@
     </div>
 </div>
 
+
 <div section-description>
     Após aplicar o efeito de categoria, devemos reorganizar o tabuleiro. Ele foi limpo e possui espaços vazios de maneira aleatória. <br/>
     A lógica básica do match 3 puzzle é que ao elimininar a pedra de cima, a de baixo deve subir e deixar o seu espaço vazio e assim sucessivamente até que os espaços vazios fiquem sempre na última linha do tabuleiro.
@@ -379,6 +369,8 @@
         </div>
     </div>
 </div>
+
+
 
 <div section-description>
     Com o tabuleiro reorganizado, devemos preencher novamente os espaços vazios para dar continuidade no jogo. 
@@ -402,6 +394,9 @@
 <div section-description>
     Com isso, temos o fluxo <span mark>STS</span> completo. 
 </div>
+
+
+
 
 <div title-sub attrac="ete">
     Método <span mark>End-To-End</span> (ETE)
@@ -428,6 +423,8 @@
         </div>
     </div>
 </div>
+
+
 <div section-description>
     O uso do <span mark>stoneConfig</span>, <span mark>category</span>, <span mark>gameStart</span> e <span mark>move</span> 
     seguem a mesma lógica, princípio e estrutura que foi explicado no fluxo <span mark>STS</span>. Então, aqui focarei em explicar somente sobre o método <span mark>fEventsProcess</span>.
@@ -544,6 +541,8 @@
         </div>
     </div>
 </div>
+
+
 <div title-sub>
     <span mark>ATIVAÇÃO</span>:
 </div>
@@ -573,6 +572,8 @@
       </div>
   </div>
 </div>
+
+
 <div title-sub>
     Definindo ação
 </div>
@@ -600,6 +601,8 @@
       </div>
   </div>
 </div>
+
+
 
 <div title-sub>
     Efeito de Onda
