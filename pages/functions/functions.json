@@ -25,7 +25,7 @@
       "description": "Gera aleatoriamente um número entre 1 a 5." 
     }
   ],
-  "Match3": [
+  "Methods": [
     {
       "functionMethod": "extractRow",
       "input": "IBasicTable[][]",
@@ -127,7 +127,9 @@
       "input": "IPostFilterMatchSimple",
       "output": "Promise&#60;IFilterMatchSimple[][]&#62;",
       "description": "Recebe o relatório feito pelo occurrenceRanger e a informação de qual direção se trata o relatório (linha ou coluna) e verifica se as repetições detectadas são elegíveis como matchs. Exemplo: Numa linha temos as colunas de 1 a 7. Se o conteúdo repetiu em sequencia da coluna 2 até a coluna 4, é constatado como elegível por ter 3 repetições em sequência. Agora se for 1 na coluna 2, 1 na coluna 4 e outro na coluna 5, não é um match válido. Se for match válido, será feito um relatório contendo somente os matchs válidos identificados." 
-    },
+    }
+  ],
+  "fHelps": [
     {
       "functionMethod": "simple.simpleMatchValidator",
       "input": "ISimpleMatch",

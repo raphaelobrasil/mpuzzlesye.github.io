@@ -6,7 +6,7 @@ const changeContent = (page='home', topic) => {
     if (this.readyState == 4) {
       if (this.status == 200) { 
         content.innerHTML = `<div class='${page}Class' >${this.responseText}</div>`
-        for (const option of options) { 
+        for await (const option of options) { 
           const json = await option.json
           option.file === page && option.call(json) 
         }
