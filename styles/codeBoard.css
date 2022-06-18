@@ -1,91 +1,62 @@
-.content .codeBoard {
+.codeBoard {
   display: flex;
   flex-direction: column;
   width: calc(100% - 72px);
-  background-color: #edefef;
-  border-radius: 4px;
-  padding: 12px;
-  margin-left: 24px;
+  background-color: var(--bg-board);
+
+  border-radius: var(--border-radius-medium);
+  padding: var(--space-medium);
+  margin-left: var(--space-large);
+  color: var(--color-main);
+
   position: relative;
-  color: #344245;
 }
 
-.content .codeBoard .codeLine {
-  display: flex;
-}
-
-.content .codeBoard .codeLine .codeScope {  
+.codeScope {  
   max-width: 85%;
-  font-family: 'Nunito', sans-serif;
+  font-family: var(--font-code);
   font-style: italic;
 }
 
-.content .codeBoard .simbol {
+.simbol {
   user-select: none;
-  font-family: 'Lato', sans-serif;
-  padding: 0px 12px;
+  font-family: var(--font-simbol-sudo);
+  padding: 0px var(--space-medium);
 }
 
-.content .codeBoard .clipboardSVG {
-  width: 24px;
-  height: 24px;
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  background-color: #344245;
-  -webkit-mask: url(./../svg/clipboard.svg) no-repeat center;
-  mask: url(./../svg/clipboard.svg) no-repeat center;
-  cursor: pointer;
-}
-
-.content .codeBoard .clipboardSVG:hover {
-  background-color: #ff8800;
-}
-
-.content .codeBoard .clipboardSuccessSVG {
-  width: 24px;
-  height: 24px;
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  background-color: #ff8800;
-  -webkit-mask: url(./../svg/clipboardSuccess.svg) no-repeat center;
-  mask: url(./../svg/clipboardSuccess.svg) no-repeat center;
-  cursor: pointer;
-}
-
-.content .codeBoard #copySucess {
+#copySucess {
   display: none;
   position: absolute;
-  background-color: #3ab816;
-  color: #eff9fa;
-  padding: 8px;
-  border-radius: 4px;
+  background-color: var(--bg-sucess);
+  color: var(--bg-main);
+  padding: var(--space-xsmall);
+  border-radius: Var(--border-radius-medium);
   top: -48px;
   left: calc(50% - 36px);
 }
 
-.content .codeBoard #copySucess #closeNotification {
+#closeNotification {
   display: flex;
-  align-content: center;
   justify-content: center;
-  width: 18px;
-  height: 18px;
-  background-color: #e82e2e;
+  width: 20px;
+  height: 20px;
+  background-color: var(--bg-danger);
 
   border: 1px solid transparent;
-  border-radius: 50%;
-  color: #eff9fa;
-  font-family: 'Nunito', sans-serif;
+  border-radius: var(--border-radius-circle);
+  color: var(--bg-main);
+  font-family: var(--font-code);
 
   position: absolute;
   top: -10px;
   right: -10px;
 
   cursor: pointer;
+  
+  transition-duration: var(--animation-duration-medium);
 }
 
-.content .codeBoard #copySucess #closeNotification:hover {
-  color: #344245;
-  border: 1px solid #344245;
+#closeNotification:hover {
+  color: var(--color-main);
+  border: 1px solid var(--color-main);
 }

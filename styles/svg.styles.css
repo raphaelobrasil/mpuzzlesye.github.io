@@ -1,0 +1,83 @@
+.github {
+  -webkit-mask: url(./../svg/github.svg) no-repeat center;
+  mask: url(./../svg/github.svg) no-repeat center;
+}
+.linkedin {
+  -webkit-mask: url(./../svg/linkedin.svg) no-repeat center;
+  mask: url(./../svg/linkedin.svg) no-repeat center;
+}
+.arrow {
+  -webkit-mask: url(./../svg/arrow.svg) no-repeat center;
+  mask: url(./../svg/arrow.svg) no-repeat center;
+}
+.closeMenu {
+  -webkit-mask: url(./../svg/arrow.svg) no-repeat center;
+  mask: url(./../svg/arrow.svg) no-repeat center;
+  margin: 15px 12px 0px 0px;
+}
+.kebab {
+  -webkit-mask: url(./../svg/kebab.svg) no-repeat center;
+  mask: url(./../svg/kebab.svg) no-repeat center;
+}
+.tutorial {
+  -webkit-mask: url(./../svg/tutorial.svg) no-repeat center;
+  mask: url(./../svg/tutorial.svg) no-repeat center;
+}
+.interface{
+  -webkit-mask: url(./../svg/typescript.svg) no-repeat center;
+  mask: url(./../svg/typescript.svg) no-repeat center;
+}
+.functions {
+  -webkit-mask: url(./../svg/function.svg) no-repeat center;
+  mask: url(./../svg/function.svg) no-repeat center;
+}
+.reform {
+  -webkit-mask: url(./../svg/reform.svg) no-repeat center;
+  mask: url(./../svg/reform.svg) no-repeat center;
+}
+.searchIcon {
+  background-color: var(--color-main);
+  width: var(--svg-size-medium);
+  height: var(--svg-size-medium);
+  -webkit-mask: url(./../svg/search.svg) no-repeat center;
+  mask: url(./../svg/search.svg) no-repeat center;
+}
+.loadingSVG {
+  background-color: var(--color-main);
+  
+  width: 36px;
+  height: 36px;
+  
+  -webkit-mask: url(./../svg/spinLoading.svg) no-repeat center;
+  mask: url(./../svg/spinLoading.svg) no-repeat center;
+
+  -webkit-animation: rotate-center 3s linear infinite both;
+  animation: rotate-center 3s linear infinite both;
+}
+.NoFoundSVG {
+  background-color: var(--color-second);
+  width: 125px;
+  height: 125px;
+  -webkit-mask: url(./../svg/noFound.svg) no-repeat center;
+  mask: url(./../svg/noFound.svg) no-repeat center;
+}
+@-webkit-keyframes rotate-center {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotate-center {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}

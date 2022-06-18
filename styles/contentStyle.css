@@ -1,270 +1,94 @@
+.view {
+  display: flex;
+  flex-direction: row;
+  max-width: 100%;
+  width: 100%;
+  min-height: 100vh;
+}
+
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   height: 30px;
-  column-gap: 24px;
-
-  background-color: #344245;
-  color: #eff9fa;
-
-  padding: 12px;
+  background-color: var(--color-main);
+  color: var(--bg-second);
+  padding: var(--space-medium);
 }
 
-.header .kebab {
-  background-color: #eff9fa;
-  width: 24px;
-  height: 24px;
-  -webkit-mask: url(./../svg/kebab.svg) no-repeat center;
-  mask: url(./../svg/kebab.svg) no-repeat center;
+.nameLib {
   cursor: pointer;
+  user-select: none;  
+  transition-duration: var(--animation-duration-medium);
 }
 
-.header .kebab:hover {
-  background-color: #ff8800;
-}
-
-.header .searchBoard {
-  display: flex;
-  justify-content: space-between;
-  background-color: #f9fafa;
-  max-width: 60%;
-  width: 60%;
-  border-radius: 8px;
-}
-
-.header .searchBoard .searchbtnIcon {
-  height: 24px;
-  position: relative;
-}
-
-.header .searchBoard .searchbtnIcon .searchIcon {
-  background-color: #344245;
-  width: 24px;
-  height: 24px;
-  -webkit-mask: url(./../svg/search.svg) no-repeat center;
-  mask: url(./../svg/search.svg) no-repeat center;
-}
-
-.header .searchBoard .searchbtnIcon span {
-  display: flex;
-  justify-content: center;
-  width: 24px;
-  height: 19.5px;
-
-  padding-top: 4px;
-  border-radius: 45%;
-  border: 2px solid #344245;
-
-  color: #344245;
-  font-family: 'Nunito', sans-serif;
-  
-  position: absolute;
-  right: -2px;
-  top: -1.5px;
-
-  cursor: pointer;
-  user-select: none;
-}
-
-.header .searchBoard .searchbtnIcon span:hover {
-  background-color: #344245;
-  border: 2px solid #ff8800;
-  color: #ff8800;
-} 
-
-.header .searchBoard .searchInput {
-  width: calc(100% - 68px);
-  background-color: #f9fafa;
-  padding: 0px 24px;
-  border: none;
-  border-radius: 8px;
-  outline: none;
-}
-
-.header .nameLib {
-  cursor: pointer;
-  user-select: none;
-}
-
-.header .nameLib:hover {
-  color: #ff8800;
+.nameLib:hover {
+  color:  var(--color-second);
 }
 
 .content {
   width: 100%;
   min-height: 100%;
-  padding-bottom: 48px;
+  padding-bottom: var(--space-xlarge);
   position: relative;
-}
-
-.content .contentPage h1 {
-  max-width: 50%;
-  padding-left: 24px;
-  border-bottom: 1px solid #344245;
-  color: #344245;
-}
-
-.content .contentPage h3 {
-  padding: 0px 24px;
-  color: #5c5c5c;
-}
-
-.contentPage h2 {
-  max-width: 50%;
-  padding: 24px 24px 0px 24px;
-  color: #344245;
 }
 
 .tableContent {
   display: flex;
   flex-direction: column;
-  width: calc(100% - 48px);
-  background-color: #FFF;
-  margin-left: 24px;
-  border-radius: 3px;
-  border-top: 1px solid #344245;
-  border-left: 1px solid #344245;
-  border-right: 1px solid #344245;
-  font-size: 14px;
+  width: calc(100% - var(--space-xlarge));
+  background-color: var(--bg-main-light);
+  margin-left: var(--space-large);
+  border-radius: var(--border-radius-small);
+  border-top: 1px solid var(--color-main);
+  border-left: 1px solid var(--color-main);
+  border-right: 1px solid var(--color-main);
+  font-size: var(--fontsize-small);
 }
 
-.tableContent .cardContent {
+.cardContent {
   display: flex;
   max-width: 100%;
   width: 100%;
-  border-bottom: 1px solid #344245;
+  border-bottom: 1px solid var(--color-main);
 }
 
-.titleContent {
-  display: flex;
-  align-items: center;
-  min-width: 20%;
-  width: 20%;  
-  padding: 12px 24px;
-  border-right: 1px solid #344245;    
-  color: #344245;
-  word-break: break-word;
-}
-
-.titleContentFunctions {
-  display: flex;
-  align-items: center;
-  min-width: 15%;
-  width: 15%;  
-  padding: 12px 24px;
-  border-right: 1px solid #344245;
-  color: #344245;
-  word-break: break-word;
-}
-
-.titleContentFunctions:not(:first-child) strong {
-  color: #ff8800;
-}
-
-.descriptionContent {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  row-gap: 12px;
-  max-width: 80%;
-  padding: 12px 24px;
-  color: #344245;
-  word-break: break-word;
-}
-
-.inputContent {
-  min-height: 100%;
-  padding: 0px 12px;
-  border-right: 1px solid #344245;
-}
-
-.outputContent {
-  padding: 0px 12px;
-  border-right: 1px solid #344245;
-}
-
-.descriptionContent span{
-  background-color: #f1f2f2;
-  padding: 4px 8px;
-  border-radius: 4px;
-  color: #ff8800;
-  font-style: italic;
-}
-
-.descriptionContent span strong {
-  color: #344245;
-}
-
-.content .menuBoard {
+.menuBoard {
   display: flex;
   justify-content: space-around;  
   flex-wrap: wrap;
-  row-gap: 36px;
-  column-gap: 36px;
-  padding: 72px 24px;
+  row-gap: var(--space-xlarge);
+  column-gap: var(--space-xlarge);
+  padding: calc(var(--space-xlarge) + var(--space-large)) var(--space-large);
 }
 
-.content .menuBoard .optionsBoard {
-  width: 48px;
-  height: 48px;
-  padding: 24px;
-  background-color: #344245;
-  cursor: pointer;
-}
-
-.content .menuBoard .tutorialBoardSVG {
-  -webkit-mask: url(./../svg/tutorial.svg) no-repeat center;
-  mask: url(./../svg/tutorial.svg) no-repeat center;
-}
-.content .menuBoard .interfaceBoardSVG {
-  -webkit-mask: url(./../svg/typescript.svg) no-repeat center;
-  mask: url(./../svg/typescript.svg) no-repeat center;
-}
-.content .menuBoard .functionsBoardSVG {
-  -webkit-mask: url(./../svg/function.svg) no-repeat center;
-  mask: url(./../svg/function.svg) no-repeat center;
-}
-.content .menuBoard .reformBoardSVG {
-  -webkit-mask: url(./../svg/reform.svg) no-repeat center;
-  mask: url(./../svg/reform.svg) no-repeat center;
-}
-
-.content .menuBoard .optionMenuBoard {
-  border-radius: 50%;
-  border: 3px solid #344245;
-  color: #344245;
+.menuBoard_option {
+  border-radius: var(--border-radius-circle);
+  border: 3px solid var(--color-main);
+  color: var(--color-main);
   position: relative;
+  
+  transition-duration: var(--animation-duration-slong);
 }
 
-.content .menuBoard .optionMenuBoard span {
+.menuBoard_option span {
   position: absolute;
   user-select: none;
   bottom: -32px;
   text-align: center;
-  font-size: 28px;
-  cursor: pointer;
+  font-size: var(--fontsize-elarge);
+  cursor: pointer;  
 }
 
 .NoFound {
   display: none;
   flex-direction: column;
   align-items: center;
-  row-gap: 24px;
+  row-gap: var(--space-large);
   padding: 200px;
 }
 
 .NoFound span {
-  font-size: 24px;
-  color:#ff8800;
+  font-size: var(--fontsize-large);
+  color: var(--color-second);
   white-space: nowrap;
   user-select: none;
-}
-
-.NoFound .NoFoundSVG {
-  background-color: #ff8800;
-  width: 125px;
-  height: 125px;
-  -webkit-mask: url(./../svg/noFound.svg) no-repeat center;
-  mask: url(./../svg/noFound.svg) no-repeat center;
+  
 }

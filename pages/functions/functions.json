@@ -1,6 +1,6 @@
 {
-  "subtitleH3": "<strong style='color: #ff8800;'>GachaSystem</strong> agrega as funções e tipagens responsáveis pelo RNG (Random Number Generator) e Ratios (Razão, índices) presente no puzzle. <strong style='color: #ff8800;''>Modules</strong> agrega funções e tipagens responsáveis pela modulação padronizada de conteúdo. <strong style='color: #ff8800;'>Match3</strong> possui é responsável por conter todos os métodos unitários que compõe o sistema do jogo, contém métodos que ajudam no uso dos métodos unitários do sistema, além do fluxo completo e os métodos de fluxo passo-a-passo. <strong style='color: #ff8800;'>PuzzleTables</strong> agrega as funções e tipagens responsáveis pela construção da matriz lógica do puzzle.",
-  "dica": " Há interfaces de input e output faltando fatoração. Eventualmente irei corrigir esses pontos. Após resolver esses pontos, pretendo trazer mais um quadro nesta página, que será responsável por dar dicas de uso.",
+  "subtitle": "<span mark>GachaSystem</span> agrega as funções e tipagens responsáveis pelo RNG (Random Number Generator) e Ratios (Razão, índices) presente no puzzle. <span mark>Modules</span> agrega funções e tipagens responsáveis pela modulação padronizada de conteúdo. <span mark>Match3</span> possui é responsável por conter todos os métodos unitários que compõe o sistema do jogo, contém métodos que ajudam no uso dos métodos unitários do sistema, além do fluxo completo e os métodos de fluxo passo-a-passo. <span mark>PuzzleTables</span> agrega as funções e tipagens responsáveis pela construção da matriz lógica do puzzle.",
+  "tip": " Há interfaces de input e output faltando fatoração. Eventualmente irei corrigir esses pontos. Após resolver esses pontos, pretendo trazer mais um quadro nesta página, que será responsável por dar dicas de uso.",
   "PuzzleTables": [
     {
       "functionMethod": "tablePuzzle",
@@ -25,7 +25,7 @@
       "description": "Gera aleatoriamente um número entre 1 a 5." 
     }
   ],
-  "Match3": [
+  "Methods": [
     {
       "functionMethod": "extractRow",
       "input": "IBasicTable[][]",
@@ -127,7 +127,9 @@
       "input": "IPostFilterMatchSimple",
       "output": "Promise&#60;IFilterMatchSimple[][]&#62;",
       "description": "Recebe o relatório feito pelo occurrenceRanger e a informação de qual direção se trata o relatório (linha ou coluna) e verifica se as repetições detectadas são elegíveis como matchs. Exemplo: Numa linha temos as colunas de 1 a 7. Se o conteúdo repetiu em sequencia da coluna 2 até a coluna 4, é constatado como elegível por ter 3 repetições em sequência. Agora se for 1 na coluna 2, 1 na coluna 4 e outro na coluna 5, não é um match válido. Se for match válido, será feito um relatório contendo somente os matchs válidos identificados." 
-    },
+    }
+  ],
+  "fHelps": [
     {
       "functionMethod": "simple.simpleMatchValidator",
       "input": "ISimpleMatch",
