@@ -10,6 +10,7 @@ const getJsonInfo = async (fileJson) => {
 const jsonInterface = getJsonInfo('interface').then(response => response)
 const jsonFunctions = getJsonInfo('functions').then(response => response)  
 const jsonTutorial = getJsonInfo('tutorial').then(response => response)  
+const jsonReform = getJsonInfo('reform').then(response => response)  
 
 const formatOption = (file, label) => ({ file, label })
 
@@ -58,8 +59,9 @@ const options = [
   },
   {
     ...formatOption('reform', 'Reform'),
-    call: (_json) => null,
-    json: {},
+    call: (json) => renderPageReform(json),
+    json: jsonReform,
     topic: []
   }
 ]
+
