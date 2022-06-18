@@ -69,7 +69,7 @@
       ]
     }
   ],
-  "Match3": [
+  "Methods": [
     {
       "title": "IActiveEffects",
       "description": [
@@ -287,6 +287,165 @@
       ]
     },
     {
+      "title": "IMatchValidate",
+      "description": [
+        {
+          "prop": "rows",
+          "type": "undefined | IFilterMatchSimple[][]"
+        },
+        {
+          "prop": "columns",
+          "type": "undefined | IFilterMatchSimple[][]"
+        },
+        {
+          "prop": "cross",
+          "type": "undefined | IFilterMatchCross[][]"
+        }
+      ]
+    },
+    {
+      "title": "IMaskBaseTable",
+      "description": [
+        {
+          "prop": "table",
+          "type": "IBasicTable[][]"
+        },
+        {
+          "prop": "countRow",
+          "type": "number"
+        },
+        {
+          "prop": "countColumn",
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "title": "IOccurrencePeriod",
+      "description": [
+        {
+          "prop": "orderPeriod",
+          "type": "IOccurrence[]"
+        },
+        {
+          "prop": "stone",
+          "type": "string"
+        },
+        {
+          "prop": "period",
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "title": "IFilterMatchSimple",
+      "description": [
+        {
+          "prop": "orderPeriod",
+          "type": "IOccurrence[][]"
+        },
+        {
+          "prop": "stone",
+          "type": "string"
+        },
+        {
+          "prop": "period",
+          "type": "number"
+        },
+        {
+          "prop": "direction",
+          "type": "‘column’ | ‘row’"
+        },
+        {
+          "prop": "idMatch",
+          "type": "string"
+        },
+        {
+          "prop": "chains",
+          "type": "undefined | string[]"
+        }
+      ]
+    },
+    {
+      "title": "IOccurrence",
+      "description": [
+        {
+          "prop": "occurrence",
+          "type": "number"
+        },
+        {
+          "prop": "id",
+          "type": "number"
+        },
+        {
+          "prop": "type",
+          "type": "string"
+        },
+        {
+          "prop": "category",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "title": "IFilterMatchCross",
+      "description": [
+        {
+          "prop": "occurrences",
+          "type": "ICrossOccurrence[]"
+        },
+        {
+          "prop": "id",
+          "type": "number"
+        },
+        {
+          "prop": "type",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "title": "ICrossOccurrence",
+      "description": [
+        {
+          "prop": "periodRow",
+          "type": "number"
+        },
+        {
+          "prop": "periodColumn",
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "title": "IClearInitEffect",
+      "description": [
+        {
+          "prop": "table",
+          "type": "IBasicTable[][]"
+        },
+        {
+          "prop": "effect",
+          "type": "ISequencial"
+        }
+      ]
+    },
+    {
+      "title": "IClearSequentialEffects",
+      "description": [
+        {
+          "prop": "table",
+          "type": "IBasicTable[][]"
+        },
+        {
+          "prop": "effect",
+          "type": "ISequenceHistory[]"
+        }
+      ]
+    }
+  ],
+  "fHelps": [   
+    {
       "title": "ISimpleMatch",
       "description": [
         {
@@ -448,163 +607,6 @@
         {
           "prop": "newTable",
           "type": "IBasicTable[][] | null"
-        }
-      ]
-    },
-    {
-      "title": "IMatchValidate",
-      "description": [
-        {
-          "prop": "rows",
-          "type": "undefined | IFilterMatchSimple[][]"
-        },
-        {
-          "prop": "columns",
-          "type": "undefined | IFilterMatchSimple[][]"
-        },
-        {
-          "prop": "cross",
-          "type": "undefined | IFilterMatchCross[][]"
-        }
-      ]
-    },
-    {
-      "title": "IMaskBaseTable",
-      "description": [
-        {
-          "prop": "table",
-          "type": "IBasicTable[][]"
-        },
-        {
-          "prop": "countRow",
-          "type": "number"
-        },
-        {
-          "prop": "countColumn",
-          "type": "number"
-        }
-      ]
-    },
-    {
-      "title": "IOccurrencePeriod",
-      "description": [
-        {
-          "prop": "orderPeriod",
-          "type": "IOccurrence[]"
-        },
-        {
-          "prop": "stone",
-          "type": "string"
-        },
-        {
-          "prop": "period",
-          "type": "number"
-        }
-      ]
-    },
-    {
-      "title": "IFilterMatchSimple",
-      "description": [
-        {
-          "prop": "orderPeriod",
-          "type": "IOccurrence[][]"
-        },
-        {
-          "prop": "stone",
-          "type": "string"
-        },
-        {
-          "prop": "period",
-          "type": "number"
-        },
-        {
-          "prop": "direction",
-          "type": "‘column’ | ‘row’"
-        },
-        {
-          "prop": "idMatch",
-          "type": "string"
-        },
-        {
-          "prop": "chains",
-          "type": "undefined | string[]"
-        }
-      ]
-    },
-    {
-      "title": "IOccurrence",
-      "description": [
-        {
-          "prop": "occurrence",
-          "type": "number"
-        },
-        {
-          "prop": "id",
-          "type": "number"
-        },
-        {
-          "prop": "type",
-          "type": "string"
-        },
-        {
-          "prop": "category",
-          "type": "string"
-        }
-      ]
-    },
-    {
-      "title": "IFilterMatchCross",
-      "description": [
-        {
-          "prop": "occurrences",
-          "type": "ICrossOccurrence[]"
-        },
-        {
-          "prop": "id",
-          "type": "number"
-        },
-        {
-          "prop": "type",
-          "type": "string"
-        }
-      ]
-    },
-    {
-      "title": "ICrossOccurrence",
-      "description": [
-        {
-          "prop": "periodRow",
-          "type": "number"
-        },
-        {
-          "prop": "periodColumn",
-          "type": "number"
-        }
-      ]
-    },
-    {
-      "title": "IClearInitEffect",
-      "description": [
-        {
-          "prop": "table",
-          "type": "IBasicTable[][]"
-        },
-        {
-          "prop": "effect",
-          "type": "ISequencial"
-        }
-      ]
-    },
-    {
-      "title": "IClearSequentialEffects",
-      "description": [
-        {
-          "prop": "table",
-          "type": "IBasicTable[][]"
-        },
-        {
-          "prop": "effect",
-          "type": "ISequenceHistory[]"
         }
       ]
     }

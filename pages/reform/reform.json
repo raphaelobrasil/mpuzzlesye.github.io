@@ -1,0 +1,45 @@
+{
+  "reform": [
+    {
+      "subtitle": "Correções futuras",
+      "body": [
+        {
+          "register": "000",
+          "content": "Aplicar correções nas interfaces, conforme especificado na página&ensp;<strong>interface</strong>"
+        },
+        {
+          "register": "001",
+          "content": "<strong>GachaSystem</strong> <span>uniStone</span> Não tem recurso de nivelamento ou escala de dificuldade, além disso, o próprio conceito de aleatoriedade aplicado é simples e sem profundidade, precisa ser melhorado para customizações de dinâmica em jogo."
+        },
+        {
+          "register": "002",
+          "content": "Aplicar correções nas interfaces, conforme especificado na página&ensp;<strong>functions</strong>."
+        },
+        {
+          "register": "003",
+          "content": "Colocar efeito de paginação via parametros por url."
+        },
+        {
+          "register": "004",
+          "content": "Aplicar efeito de &ensp;<strong>anchor link</strong>."
+        },
+        {
+          "register": "005",
+          "content": "Criar seções e capítulos para dividir melhor o conteúdo e torná-lo menos massivo."
+        },
+        {
+          "register": "006",
+          "content": "Incluir conteúdo do tutorial e do reform no sistema de pesquisa."
+        },
+        {
+          "register": "007",
+          "content": "Melhorar o layout responsivo."
+        },
+        {
+          "register": "008",
+          "content": "Usar em em breakpoints."
+        }
+      ]
+    }
+  ]
+}
