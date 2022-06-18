@@ -19,7 +19,7 @@ const changeContent = (page='home', topic) => {
       }
     }
   }
-  xhttp.open("GET", `${url}${!!topic ? `${page}/${topic}` : page}`, true)
+  xhttp.open("GET", `${url}${page}`, true)
   xhttp.send()
 }
 
