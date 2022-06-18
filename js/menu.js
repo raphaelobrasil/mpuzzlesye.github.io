@@ -42,31 +42,31 @@ const closeMenu = () => {
   changeShowMenu(menu, kebab, false, header)
 }
 
-const changePage = (newOption='home') => {
-  const closed = '180'
-  const open = '270'
-  options.forEach(oldOption => {
-    const option = document.querySelector(`#${oldOption.file}Menu`)
-    const arrow = document.querySelector(`#${oldOption.file}Arrow`)
-    const isOpen = (!!arrow && newOption === oldOption.file) ? arrow.getAttribute('rotate') : closed
-    if (newOption === oldOption.file) {
-      const [indexCurrent] = oldOption.topic
-      changeContent(newOption, indexCurrent?.file)
-      option.className = "optionMenuActive"
-      !!arrow && (
-          arrow.setAttribute('rotate', open === isOpen ? closed : open),
-          document.querySelector(`#${oldOption.file}_topic`).setAttribute('style', `display: ${open === isOpen ? 'none' : 'flex'}`)
-        )
-    } else {
-      option.className = "optionMenu"
-      !!arrow && (
-          arrow.setAttribute('rotate', closed),
-          document.querySelector(`#${oldOption.file}_topic`).setAttribute('style', 'display: none')
-        )
-    }
-  })
-  document.querySelector('.searchInput').value = ''
-  getSearch('')
+const changePage = (newOption='home', hasTopic) => {
+    const closed = '180'
+    const open = '270'
+    options.forEach(oldOption => {
+      const option = document.querySelector(`#${oldOption.file}Menu`)
+      const arrow = document.querySelector(`#${oldOption.file}Arrow`)
+      const isOpen = (!!arrow && newOption === oldOption.file) ? arrow.getAttribute('rotate') : closed
+      if (newOption === oldOption.file) {
+        const [indexCurrent] = oldOption.topic
+        changeContent(newOption, !!hasTopic ? hasTopic : indexCurrent?.file)
+        option.className = "optionMenuActive"
+        !!arrow && (
+            arrow.setAttribute('rotate', open === isOpen ? closed : open),
+            document.querySelector(`#${oldOption.file}_topic`).setAttribute('style', `display: ${open === isOpen ? 'none' : 'flex'}`)
+          )
+      } else {
+        option.className = "optionMenu"
+        !!arrow && (
+            arrow.setAttribute('rotate', closed),
+            document.querySelector(`#${oldOption.file}_topic`).setAttribute('style', 'display: none')
+          )
+      }
+    })
+    document.querySelector('.searchInput').value = ''
+    getSearch('')
 }
 
 const changeTopic = (newSection='home', newTopic='home') => {

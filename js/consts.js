@@ -9,6 +9,7 @@ const getJsonInfo = async (fileJson) => {
 }  
 const jsonInterface = getJsonInfo('interface').then(response => response)
 const jsonFunctions = getJsonInfo('functions').then(response => response)  
+const jsonTutorial = getJsonInfo('tutorial').then(response => response)  
 
 const formatOption = (file, label) => ({ file, label })
 
@@ -21,8 +22,8 @@ const options = [
   },
   {
     ...formatOption('tutorial', 'Tutorial'),
-    call: (_json) => null,
-    json: {},
+    call: (json, page, topic) => renderPageTutorial(json, page, topic),
+    json: jsonTutorial,
     topic: [
       formatOption('introduction', 'Introduction'),
       formatOption('matchs', 'Matchs'),

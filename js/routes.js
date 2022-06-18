@@ -6,7 +6,7 @@ const initPage = () => {
   changeContent(page, topic)
   renderMenu() 
   !!page && openMenu()   
-  changePage(page)
+  changePage(page, topic)
   changeTopic(page, topic)
 }
 
