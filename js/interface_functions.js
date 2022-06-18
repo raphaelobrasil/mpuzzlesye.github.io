@@ -51,7 +51,24 @@ const listInterface = (category, list, subtitle, tip, topic) => {
   }
 }
 
-const listFunctions = (category, list, subtitle, tip, topic, urlTopic) => {
+const getAnchorUrl = async (info) => {
+  let response = ''
+  for await (const { file, json, topic } of options) {
+    if (file === 'interface') {
+      for await (const menu of topic) {
+        const getJson = await json
+        for await (const { title } of getJson[menu.label]) {
+          if (attracInfo(info) === attracInfo(title)) {
+            response = menu.file
+          }
+        }
+      }
+    }
+  }
+  return response
+} 
+
+const listFunctions = async (category, list, subtitle, tip, topic, urlTopic) => {
   const content = document.querySelector(`#${category}`)
   if (!!content) {
     const [init] = content.children
@@ -62,14 +79,21 @@ const listFunctions = (category, list, subtitle, tip, topic, urlTopic) => {
     const tipcontent = document.querySelector(`#tip`)
 
     for (const { functionMethod, input, output, description } of list) {
-      const titleContent = (info, second) => `<div title-col="15"><strong ${second && 'title-col-second'}>${
-       (second && urlTopic !== 'gachaSystem') 
-       ? `<a no-effect pointer href="?page=interface&&topic=${urlTopic}&&attrac=${attracInfo(info)}">${info}</a>`
-       : info
-      }</strong></div>`
+      const titleContent = async (info, second) => {
+        const anchor = await getAnchorUrl(info)
+        return `<div title-col="15"><strong ${second && 'title-col-second'}>${
+          (second && urlTopic !== 'gachaSystem') 
+          ? `<a no-effect pointer href="?page=interface&&topic=${anchor}&&attrac=${attracInfo(info)}">${info}</a>`
+          : info
+        }</strong></div>`
+      }
       
+      const method = await titleContent(functionMethod, false)
+      const inputMethod =  await titleContent(input, true)
+      const outputMethod = await titleContent(output, true)
+
       const constructor = `<div class="cardContent">${
-        titleContent(functionMethod, false) + titleContent(input, true) + titleContent(output, true)
+        method + inputMethod + outputMethod
       }<div descript-col>${description}</div></div>` 
 
       content.innerHTML += constructor 

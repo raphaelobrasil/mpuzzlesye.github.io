@@ -73,7 +73,8 @@
 .functSearchPuzzle, 
 .functSearchModules, 
 .functSearchMatch3, 
-.functSearchGachaSystem {
+.functSearchGachaSystem,
+#TutorialSearch {
   display: none;
 }
 
