@@ -210,6 +210,10 @@
   background-color: var(--color-main);
 }
 
+mark {
+  border-radius: var(--border-radius-medium);
+}
+
 @-webkit-keyframes fadeIn {
   from { opacity: 0; }
     to { opacity: 1; }

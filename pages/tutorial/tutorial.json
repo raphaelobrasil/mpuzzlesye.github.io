@@ -140,7 +140,7 @@
         },
         {
           "subDescription": "O uso do <span mark>stoneConfig</span>, <span mark>category</span>, <span mark>gameStart</span> e <span mark>move</span> seguem a mesma lógica, princípio e estrutura que foi explicado no fluxo <span mark>STS</span>. Então, aqui focarei em explicar somente sobre o método <span mark>fEventsProcess</span>.",
-          "titleStep": "<span mark>fEventsProcess</span><br/><br/>",
+          "titleStep": "<span mark>fEventsProcess</span>",
           "StepDescription": "Método responsável por realizar o fluxo <span mark>ETE</span>, deve retornar um objeto completo com todas as informações que podem ser encontradas no fluxo <span mark>STS</span>.<br/>Em situação normal, o tempo de execução é menor que 0.02s, mas é mais propenso a ser afetado pela aplicação que o consumirá.  <br/><br/>Obs.: O <span mark>move</span> também pode ser undefined, para situações onde o match não foi realizado por movimento direto do usuário. ",
           "clipBoard": "const completFlow = await fEventsProcess({ table: valueTableAfterMove, config, activeCategorys, move })",
           "codeBoard": [

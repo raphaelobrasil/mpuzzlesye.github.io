@@ -63,8 +63,8 @@ const listTutorial = (contentName, json, label, descriptionPage, cardAlert) => {
         code_Board += render_codeLine(line)
       })
       clip_board = clipBoard ? render_codeBoard(code_Board, clipBoard, key) : ''
+      content.innerHTML += sub_title + sub_desc + title_step + desc_step + clip_board + `<br/><br/>`
     }
-    content.innerHTML += sub_title + sub_desc + title_step + desc_step + clip_board + `<br/><br/>`
   })
   tutorial_rodape(contentName, label)
 }
