@@ -1,5 +1,5 @@
 const renderPageReform = (json) => {
-  const content = 'Reforms'
+  const content = 'ReformsWarnning'
   listReform(content, json.reform)
 }
 
@@ -12,6 +12,7 @@ const listReform = (contentName, json) => {
       for (const { register, content } of body) {
         card += render_doubleCardContent20(register, content)
       }
+      contentReform.innerHTML = ''
       contentReform.innerHTML += title + render_tableContent(card)
     }
   }
