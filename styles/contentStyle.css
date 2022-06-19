@@ -71,7 +71,7 @@
 .menuBoard_option span {
   position: absolute;
   user-select: none;
-  bottom: -32px;
+  bottom: -42px;
   text-align: center;
   font-size: var(--fontsize-elarge);
   cursor: pointer;  

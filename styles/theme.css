@@ -35,8 +35,8 @@
   --svg-size-medium: 24px;
   --svg-size-xlarge: 48px;
 
-  --font-main: 'Roboto', sans-serif;
-  --font-code: 'Cambay', sans-serif;
+  --font-main: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  --font-code: source-code-pro, Menlo,Monaco, Consolas, Courier New, monospace;
   --font-simbol-sudo: 'Lato', sans-serif;
 
   --border-radius-small: 3px;
