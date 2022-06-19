@@ -17,26 +17,10 @@
         },
         {
           "register": "003",
-          "content": "Colocar efeito de paginação via parametros por url."
-        },
-        {
-          "register": "004",
-          "content": "Aplicar efeito de &ensp;<strong>anchor link</strong>."
-        },
-        {
-          "register": "005",
-          "content": "Criar seções e capítulos para dividir melhor o conteúdo e torná-lo menos massivo."
-        },
-        {
-          "register": "006",
-          "content": "Incluir conteúdo do tutorial e do reform no sistema de pesquisa."
-        },
-        {
-          "register": "007",
           "content": "Melhorar o layout responsivo."
         },
         {
-          "register": "008",
+          "register": "004",
           "content": "Usar em em breakpoints."
         }
       ]
