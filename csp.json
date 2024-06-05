@@ -1,7 +1,6 @@
 {
   "default-src": ["'self'", "https://www.googletagmanager.com", "https://demo-mpuzzlesye.vercel.app"],
-  "script-src": ["'self'", "https://www.googletagmanager.com", "https://demo-mpuzzlesye.vercel.app"],
-  "script-src-elem": ["'unsafe-inline'", "'self'", "*"],
+  "script-src": ["'self'", "https://www.googletagmanager.com", "https://demo-mpuzzlesye.vercel.app", "'unsafe-inline'"],
   "style-src": ["'self'", "'unsafe-inline'"],
   "frame-src": ["'self'", "https://demo-mpuzzlesye.vercel.app"],
   "connect-src": ["'self'", "https://www.google-analytics.com", "https://www.googletagmanager.com"]
