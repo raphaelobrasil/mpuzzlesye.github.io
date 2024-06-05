@@ -1,0 +1,5 @@
+{
+  "default-src": ["'self'"],
+  "script-src": ["'self'", "https://demo-mpuzzlesye.vercel.app"],
+  "frame-src": ["'self'", "https://demo-mpuzzlesye.vercel.app"]
+}
