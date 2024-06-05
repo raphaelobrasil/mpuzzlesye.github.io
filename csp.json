@@ -1,6 +1,6 @@
 {
   "default-src": ["'self'", "https://www.googletagmanager.com", "https://demo-mpuzzlesye.vercel.app"],
-  "script-src": ["'self'", "https://www.googletagmanager.com", "https://demo-mpuzzlesye.vercel.app", "'unsafe-inline'"],
+  "script-src": ["'self'", "https://www.googletagmanager.com", "https://demo-mpuzzlesye.vercel.app"],
   "script-src-elem": ["'unsafe-inline'", "www.googletagmanager.com"],
   "style-src": ["'self'", "'unsafe-inline'"],
   "frame-src": ["'self'", "https://demo-mpuzzlesye.vercel.app"],
